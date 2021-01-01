@@ -10,7 +10,7 @@
 
     <!-- Header-->
     <header>
-        <h1>Welcome to Odissey Chrome extension</h1>
+        
     </header>
     
 
@@ -18,7 +18,7 @@
 
     <main>
     
-    <section>
+    <section class="info">
         <article>
             <div id="player"></div>
         </article>
@@ -28,20 +28,20 @@
         </article>
     </section>
 
-    <section>
-        <input type="button" value="play" onclick="playVideo()">
-        <input type="button" value="pause" onclick="pauseVideo()">
-        <input type="button" value="previous" onclick="previousVideo()">
-        <input type="button" value="next" onclick="nextVideo()">
+    <section class="controls"> 
+        <input type="button" id="btnp" value="<l" onclick="previousVideo()">
+        <input type="button" id="btnplay" value="play" onclick="playVideo()">
+        <input type="button" id="btnnext" value="l>" onclick="nextVideo()">
     </section>
 
     <section>
-        <input type="range" name="video_progress" id="video_progress" value="20" min="0" max="100" step="1">
-        <output class="vp-output" for="video_progress"></output>
+        <h4>Progreso</h4>
+        <input type="range" name="video_progress_bar" id="video_progress_bar" value="20" min="0" step="1" width="200px" class="barra">
     </section>
     
     <section>
-        <input type="range" name="volumen" id="volumen" value="20" min="0" max="100" step="1">
+        <h4>Volumen</h4>
+        <input type="range" name="volumen" id="volumen" value="20" min="0" max="100" step="1" width="200px" class="barra">
         <output class="volumen-output" for="volumen"></output>
     </section>
 

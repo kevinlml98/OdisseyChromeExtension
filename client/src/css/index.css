@@ -1,0 +1,36 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+main {
+    background-color: #000;
+    width: 100vw;
+}
+
+h3 {
+    color: #fff;
+}
+
+iframe {
+    width: 200px;
+    height: 200px;
+}
+
+.controls input{
+    width: 68px;
+    height: 50px;
+    border: 5px solid #00f;
+    background-color: #000;
+    color: #00f;
+    font-size: 20px;
+}
+
+.controls input:hover{
+    border: 5px solid #99f;
+    color: #99f;
+}
+
+.barra {
+    width: 200px;
+}

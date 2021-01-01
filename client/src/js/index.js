@@ -13,32 +13,45 @@ function onYouTubeIframeAPIReady() {
         width: '640',
         videoId: 'M7lc1UVf-VE',
         events: {
-            //'onReady': onPlayerReady
+            'onReady': onPlayerReady
         }
     });
 }
 
-
-
 function onPlayerReady(event) {
-    event.target.playVideo();
+    let pgd = player.getDuration();
+    let vpb = document.getElementById("video_progress_bar");
+    vpb.setAttribute("max",pgd);
 }
 
 // Controles multimedia
 function playVideo() {
+    let btn = document.getElementById("btnplay");
+    btn.setAttribute("onclick","pauseVideo()");
+    btn.setAttribute("value","pause");
     player.playVideo();
 }
 function pauseVideo() {
+    let btn = document.getElementById("btnplay");
+    btn.setAttribute("onclick","playVideo()");
+    btn.setAttribute("value","play");
     player.pauseVideo();
 }
 
-//player.getDuration():Number muestra la duración de video
 
-const volumen = document.querySelector('#volumen')
-const output = document.querySelector('.volumen-output')
-
-output.textContent = volumen.value
+// Volumen__________________________________________________________________________
+const volumen = document.getElementById('volumen')
 
 volumen.addEventListener('input', function() {
-  output.textContent = volumen.value
+  let v = volumen.value;
+  player.setVolume(v);
+});
+
+// ProgressBar__________________________________________________________________________
+const vpb = document.getElementById('video_progress_bar')
+
+vpb.addEventListener('input', function() {
+  let rb = vpb.value;
+  player.seekTo(rb);
+
 });
