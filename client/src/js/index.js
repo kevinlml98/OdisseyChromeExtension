@@ -13,7 +13,7 @@ function onYouTubeIframeAPIReady() {
         width: '640',
         videoId: 'M7lc1UVf-VE',
         events: {
-            'onReady': onPlayerReady
+            //'onReady': onPlayerReady
         }
     });
 }
@@ -31,3 +31,14 @@ function playVideo() {
 function pauseVideo() {
     player.pauseVideo();
 }
+
+//player.getDuration():Number muestra la duración de video
+
+const volumen = document.querySelector('#volumen')
+const output = document.querySelector('.volumen-output')
+
+output.textContent = volumen.value
+
+volumen.addEventListener('input', function() {
+  output.textContent = volumen.value
+});

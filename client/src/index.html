@@ -16,16 +16,37 @@
 
     <!-- Main -->
 
-    <div id="player"></div>
+    <main>
+    
+    <section>
+        <article>
+            <div id="player"></div>
+        </article>
+        <article>
+            <h3>Titulo</h3>
+            <h3>Album</h3>
+        </article>
+    </section>
 
-    <input type="button" value="play" onclick="playVideo()">
-    <input type="button" value="pause" onclick="pauseVideo()">
-    <input type="button" value="previous" onclick="previousVideo()">
+    <section>
+        <input type="button" value="play" onclick="playVideo()">
+        <input type="button" value="pause" onclick="pauseVideo()">
+        <input type="button" value="previous" onclick="previousVideo()">
+        <input type="button" value="next" onclick="nextVideo()">
+    </section>
+
+    <section>
+        <input type="range" name="video_progress" id="video_progress" value="20" min="0" max="100" step="1">
+        <output class="vp-output" for="video_progress"></output>
+    </section>
+    
+    <section>
+        <input type="range" name="volumen" id="volumen" value="20" min="0" max="100" step="1">
+        <output class="volumen-output" for="volumen"></output>
+    </section>
 
 
-    <input type="button" value="next" onclick="nextVideo()">
-
-
+    </main>
 
     <!--Footer -->
     <footer>
