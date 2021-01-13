@@ -9,9 +9,10 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 var player;
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
-        height: '360',
-        width: '640',
+        height: '260',
+        width: '540',
         videoId: 'M7lc1UVf-VE',
+        playerVars: { 'autoplay': 1, 'controls': 0 },
         events: {
             'onReady': onPlayerReady
         }
@@ -24,6 +25,23 @@ function onPlayerReady(event) {
     vpb.setAttribute("max",pgd);
 }
 
+document.getElementById('btnplay').addEventListener('click',playV);
+function playV(element){
+    let btn = document.getElementById("btnplay");
+    btn.style.display = 'none';
+    let btn2 = document.getElementById("btnpause");
+    btn2.style.display = '';
+    player.playVideo();
+}
+document.getElementById('btnpause').addEventListener('click',pauseV);
+function pauseV(element){
+    let btn = document.getElementById("btnplay");
+    btn.style.display = '';
+    let btn2 = document.getElementById("btnpause");
+    btn2.style.display = 'none';
+    player.pauseVideo();
+}
+/*
 // Controles multimedia
 function playVideo() {
     let btn = document.getElementById("btnplay");
@@ -37,7 +55,6 @@ function pauseVideo() {
     btn.setAttribute("value","play");
     player.pauseVideo();
 }
-
 
 // Volumen__________________________________________________________________________
 const volumen = document.getElementById('volumen')
@@ -54,4 +71,4 @@ vpb.addEventListener('input', function() {
   let rb = vpb.value;
   player.seekTo(rb);
 
-});
+});*/
