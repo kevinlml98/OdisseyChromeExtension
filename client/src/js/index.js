@@ -6,11 +6,11 @@ var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 
-var player;
+let player;
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
-        height: '360',
-        width: '640',
+        height: '200',
+        width: '200',
         videoId: 'M7lc1UVf-VE',
         events: {
             'onReady': onPlayerReady
@@ -25,23 +25,16 @@ function onPlayerReady(event) {
 }
 
 // Controles multimedia
-function playVideo() {
-    let btn = document.getElementById("btnplay");
-    btn.setAttribute("onclick","pauseVideo()");
-    btn.setAttribute("value","pause");
+document.getElementById('btnplay').addEventListener('click', function () {
     player.playVideo();
-}
-function pauseVideo() {
-    let btn = document.getElementById("btnplay");
-    btn.setAttribute("onclick","playVideo()");
-    btn.setAttribute("value","play");
+});
+document.getElementById('btnpause').addEventListener('click', function () {
     player.pauseVideo();
-}
+});
 
 
 // Volumen__________________________________________________________________________
 const volumen = document.getElementById('volumen')
-
 volumen.addEventListener('input', function() {
   let v = volumen.value;
   player.setVolume(v);
@@ -49,7 +42,6 @@ volumen.addEventListener('input', function() {
 
 // ProgressBar__________________________________________________________________________
 const vpb = document.getElementById('video_progress_bar')
-
 vpb.addEventListener('input', function() {
   let rb = vpb.value;
   player.seekTo(rb);

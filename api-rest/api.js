@@ -102,7 +102,7 @@ router.delete('/songs/:id', (req, res) => {
 //   GET /songs?search=____________________________________
 router.get('/songs/:search', (req, res) => {
   const {search} = req.params;
-  mysqlConnection.query(`call ReturnSoundtracks(${search})`, (error, result) =>{
+  mysqlConnection.query(`call SearchSoundtracks(${search})`, (error, result) =>{
     if (error) throw error;
     if (result.length > 0){
       res.json(result);
@@ -113,6 +113,8 @@ router.get('/songs/:search', (req, res) => {
  });  
   
 });
+
+
 
 
 
