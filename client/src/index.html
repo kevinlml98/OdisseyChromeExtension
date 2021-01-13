@@ -28,24 +28,25 @@
         </article>
     </section>
 
+    <button id="vis">👀</button>
+
     <section class="controls"> 
-        <input type="button" id="btnp" value="<l" onclick="previousVideo()">
-        <input type="button" id="btnplay" value="play" onclick="playVideo()">
-        <input type="button" id="btnnext" value="l>" onclick="nextVideo()">
+        
+        <input type="button" id="btnp" value="<l">
+        <input type="button" id="btnplay" value="pause">
+        <input type="button" id="btnnext" value="l>">
     </section>
 
     <section>
         <h4>Progreso</h4>
-        <input type="range" name="video_progress_bar" id="video_progress_bar" value="20" min="0" step="1" width="200px" class="barra">
+        <input type="range" name="video_progress_bar" id="video_progress_bar" value="0" min="0" step="1" width="200px" class="barra">
     </section>
     
     <section>
         <h4>Volumen</h4>
-        <input type="range" name="volumen" id="volumen" value="20" min="0" max="100" step="1" width="200px" class="barra">
+        <input type="range" name="volumen" id="volumen" value="100" min="0" max="100" step="1" width="200px" class="barra">
         <output class="volumen-output" for="volumen"></output>
     </section>
-
-
     </main>
 
     <!--Footer -->
