@@ -4,8 +4,7 @@
 }
 
 body{
-    width: 540px;
-    height: 260px;
+    width: 240px;
 }
 
 main {
@@ -14,12 +13,26 @@ main {
 }
 
 h3 {
+    display: block;
     color: #fff;
 }
 
 iframe {
-    width: 540px;
-    height: 260px;
+    width: 240px;
+    height: 140px;
+}
+
+.section info{
+    display: flex;
+}
+
+button{
+    display: block;
+    width: 25px;
+    height: 25px;
+    background-color: #4a5;
+} button:hover{
+    background-color: #8e9;
 }
 
 .controls input{
