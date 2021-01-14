@@ -1,3 +1,4 @@
+drop database if exists odisseydb ;
 create database odisseydb;
 
 use odisseydb;
@@ -5,8 +6,7 @@ use odisseydb;
 create table USERS(
 US_Id int not null auto_increment primary key,
 US_Name varchar(50) not null,
-US_Email varchar(50) not null,
-US_Password varchar(50) not null
+US_Email varchar(50) not null
 );
 
 create table KEYWORDS(
@@ -23,19 +23,27 @@ ST_Title varchar(30) not null
 
 
 create table KWxST(
-KWxST_KW_Id int not null,
-KWxST_ST_Id int not null,
+KW_Id int not null,
+ST_Id int not null,
 
-foreign key (KWxST_KW_Id) references KEYWORDS(KW_Id),
-foreign key (KWxST_ST_Id) references SOUNDTRACKS(ST_Id)
+foreign key (KW_Id) references KEYWORDS(KW_Id),
+foreign key (ST_Id) references SOUNDTRACKS(ST_Id)
+);
+
+create table USxST(
+US_Id int not null,
+ST_Id int not null,
+
+foreign key (US_Id) references USERS(US_Id),
+foreign key (ST_Id) references SOUNDTRACKS(ST_Id)
 );
 
 -- USUARIOS _____________________________________________________________________________________________
-DROP PROCEDURE IF EXISTS AddUSer;
+DROP PROCEDURE IF EXISTS AddUser;
 DELIMITER $$
-create procedure AddUser(in IN_US_Name varchar(50), in IN_US_Password varchar(50), in IN_US_Email varchar(50))
+create procedure AddUser(in IN_US_Name varchar(50), in IN_US_Email varchar(50))
 begin
-insert into USERS(US_Name,US_Password,US_Email) values(IN_US_Name,IN_US_Password,IN_US_Email);
+insert into USERS(US_Name,US_Email) values(IN_US_Name,IN_US_Email);
 end
 $$
 
@@ -44,7 +52,7 @@ DROP PROCEDURE IF EXISTS ReturnAllUsers;
 DELIMITER $$
 create procedure ReturnAllUsers()
 begin
-select US_Id,US_Name,US_Email from USERS;
+select * from USERS;
 end
 $$
 
@@ -53,7 +61,7 @@ DROP PROCEDURE IF EXISTS ReturnUser;
 DELIMITER $$
 create procedure ReturnUser(in IN_US_Id int)
 begin
-select US_Id,US_Name,US_Email from USERS where US_Id = IN_US_Id;
+select * from USERS where US_Id = IN_US_Id;
 end
 $$
 
@@ -62,6 +70,14 @@ DELIMITER $$
 create procedure DeleteUser(in IN_US_Id int)
 begin
 delete from USERS where US_Id = IN_US_Id;
+end
+$$
+
+DROP PROCEDURE IF EXISTS FavoriteSound;
+DELIMITER $$
+create procedure FavoriteSound(in IN_USxST_US_Id int, in IN_USxST_ST_Id int)
+begin
+insert into USxST(US_Id,ST_Id) values (IN_USxST_US_Id,IN_USxST_ST_Id);
 end
 $$
 
@@ -82,16 +98,6 @@ DELIMITER $$
 create procedure DeleteSoundtracks(in IN_ST_Id int)
 begin
 delete from SOUNDTRACKS where ST_Id = IN_ST_Id;
-end
-$$
-
-
-
-DROP PROCEDURE IF EXISTS ReturnSoundtracks;
-DELIMITER $$
-create procedure ReturnSoundtracks(in IN_KW_Value varchar(30))
-begin
-select * from KWxST inner join  KEYWORDS on KEYWORDS.KW_Value = IN_KW_Value;
 end
 $$
 
@@ -119,7 +125,7 @@ DROP PROCEDURE IF EXISTS AssingnKeyword;
 DELIMITER $$
 create procedure AssingnWord(in IN_KWxST_KW_Id int, in IN_KWxST_ST_Id int)
 begin
-insert into KWxST(KWxST_KW_Id,KWxST_ST_Id) values (IN_KWxST_KW_Id,IN_KWxST_ST_Id);
+insert into KWxST(KW_Id,ST_Id) values (IN_KWxST_KW_Id,IN_KWxST_ST_Id);
 end
 $$
 
@@ -129,9 +135,9 @@ DROP PROCEDURE IF EXISTS SearchSoundtracks;
 DELIMITER $$
 create procedure SearchSoundtracks(in IN_KW_Value varchar(30))
 begin
-declare AUX_Id int;
-select KW_Id from KEYWORDS where KW_Value = IN_KW_Value limit 1 into AUX_Id;
-select ST_Id,ST_URL,ST_Artist,ST_Title from SOUNDTRACKS inner join KEYWORDS on KEYWORDS.KW_Id = AUX_ID;
+select SOUNDTRACKS.ST_Id,SOUNDTRACKS.ST_Title,SOUNDTRACKS.ST_Artist,SOUNDTRACKS.ST_URL from SOUNDTRACKS
+inner join KWxST on KWxST.ST_Id = SOUNDTRACKS.ST_Id
+inner join KEYWORDS on KEYWORDS.KW_Id = KWxST.KW_Id where KEYWORDS.KW_Value = IN_KW_Value;
 end
 $$
 
