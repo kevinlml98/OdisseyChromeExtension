@@ -83,7 +83,6 @@ function playV(element){
 //---------------------------   Volumen   ---------------------------
 
 const volumen = document.getElementById('volumen')
-
 volumen.addEventListener('input', function() {
     let v = volumen.value;
     player.setVolume(v);
@@ -92,7 +91,6 @@ volumen.addEventListener('input', function() {
 //---------------------------   ProgressBar   ---------------------------
 
 const vpb = document.getElementById('video_progress_bar')
-
 vpb.addEventListener('input', function() {
     let rb = vpb.value;
     player.seekTo(rb);
