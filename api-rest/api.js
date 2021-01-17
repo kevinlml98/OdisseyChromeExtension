@@ -128,14 +128,10 @@ router.get('/users/exists/:id', (req, res) => {
 router.post('/users', (req, res) => {
 
 
-  const sql = `call AddUser(?,?,?)`;
-  const userBody = {
-    name: req.body.name,
-    password: req.body.password,
-    email: req.body.email
-  };
+  const {email} = req.body.email;
+  const sql = `call AddUser(${email})`;
 
-  mysqlConnection.query(sql, [userBody.name, userBody.password, userBody.email], error => {
+  mysqlConnection.query(sql, error => {
     if (error) throw error;
     res.json({
       status: "User added"});

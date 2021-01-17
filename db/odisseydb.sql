@@ -5,7 +5,6 @@ use odisseydb;
 
 create table USERS(
 US_Id int not null auto_increment primary key,
-US_Name varchar(50) not null,
 US_Email varchar(50) not null
 );
 
@@ -41,9 +40,9 @@ foreign key (ST_Id) references SOUNDTRACKS(ST_Id)
 -- USUARIOS _____________________________________________________________________________________________
 DROP PROCEDURE IF EXISTS AddUser;
 DELIMITER $$
-create procedure AddUser(in IN_US_Name varchar(50), in IN_US_Email varchar(50))
+create procedure AddUser(in IN_US_Email varchar(50))
 begin
-insert into USERS(US_Name,US_Email) values(IN_US_Name,IN_US_Email);
+insert into USERS(US_Email) values(IN_US_Email);
 end
 $$
 
@@ -146,7 +145,7 @@ DROP PROCEDURE IF EXISTS SearchEmail;
 DELIMITER $$
 create procedure SearchEmail(in IN_US_Email varchar(50))
 begin
-select USERS.US_Id,USERS.US_Name from USERS where USERS.US_Email = IN_US_Email;
+select USERS.US_Id from USERS where USERS.US_Email = IN_US_Email;
 end
 $$
 

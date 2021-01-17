@@ -1,14 +1,43 @@
+// OMNIBOX _________________________________________________________
+
+
+
+chrome.omnibox.onInputChanged.addListener(
+
+
+    function(text, suggest)
+    {
+        suggest([
+            { content: "primera opcion", description: "1er opcion " + text },
+            { content: "segunda opcion" , description: "2da opcion " + text }
+        ]);
+    }
+
+
+
+
+);
+
+
+chrome.omnibox.onInputEntered.addListener(
+
+
+
+);
+
+
 // FETCH --> Retorna una promesa
 
-var req = 'users';
+//var req = 'users';
 var id = 1;
-var url = `http://localhost:4000/${req}`;
+//var url = `http://localhost:4000/${req}`;
 var nombre;
 var correo;
 
 
 // GET/users___________________________________
 function GET_AllUsers(){
+    var url = `http://localhost:4000/users`;
     fetch( url, {
         method: 'GET',
         headers: {
@@ -21,8 +50,9 @@ function GET_AllUsers(){
     });   
 }
 
-// GET/users___________________________________
-function GET_AllUsers(){
+// GET/songs___________________________________
+function GET_Soundtracks(req){
+    var url = `http://localhost:4000/songs/${req}`;
     fetch( url, {
         method: 'GET',
         headers: {
@@ -30,25 +60,18 @@ function GET_AllUsers(){
           }
     })
     .then(response => response.json())
-    .then(data => console.log(data)).catch( error => {
-      console.log(error);
-    });   
-}
-
-
-// GET/users/id___________________________________
-async function GET_Sound(){
-
-    fetch( url + '/users/1', {
-        method: 'GET',
-        header :{
-            'usuario' : usuario
-        }
-    }).then( (response) => response.json()).then(data => {
+    .then(data => {
         console.log(data);
-    });
+        console.log(data.length);
+
     
+    }).catch( error => {
+      console.log(error);
+    });   
 }
+
+
+
 
 
 
