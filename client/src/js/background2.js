@@ -25,3 +25,33 @@ function gotMessage(msg, sender, response)
     }
 }
 }
+
+
+var req = 'users';
+var id = 1;
+var url = `http://localhost:4000/${req}`;
+
+fetch(url, {
+    headers:{
+        "usuario":id
+    }
+})
+.then(response => response.json())
+.then(data => {console.log(data);});
+
+
+// GET/users___________________________________
+function GET_AllUsers(){
+
+    fetch( url, {
+        method: 'GET',
+        headers: {
+            'usuario' : id
+          }
+    })
+    .then(response => response.json())
+    .then(data => console.log(data)).catch( error => {
+      console.log(error);
+    });
+    
+}

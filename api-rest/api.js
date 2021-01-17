@@ -11,6 +11,31 @@ router.get('/', (req, res) => {
 });
 
 
+//   GET /checkuser/____________________________________
+router.get('/checkuser/:email', (req, res) => {
+
+  const email = req.params['email'];
+  const sql = 'call SearchEmail("' + email + '")';
+
+  mysqlConnection.query(sql, (error, result) => {
+    if (error) throw error;
+    if (result[0].length > 0) {
+      res.json({
+        exist: true,
+        body : result[0]
+      });
+    }
+    else {
+      res.json({
+        exist : false
+      });
+    }
+  });
+
+
+});
+
+
 
 //   GET /users____________________________________________
 router.get('/users', (req, res) => {
@@ -24,7 +49,9 @@ router.get('/users', (req, res) => {
       mysqlConnection.query('call ReturnAllUsers()', (error, result) => {
         if (error) throw error;
         if (result.length > 0) {
+
           res.json(result[0]);
+          
         }
         else {
           res.json({
@@ -80,6 +107,8 @@ router.get('/users/:id', (req, res) => {
 router.get('/users/exists/:id', (req, res) => {
   const { id } = req.params;
   mysqlConnection.query(`call ReturnUser(${id})`, (error, result) => {
+
+
     if (error) throw error;
     if (result[0].length > 0) {
       res.send("User found")
@@ -90,6 +119,11 @@ router.get('/users/exists/:id', (req, res) => {
 
   });
 });
+
+
+
+
+
 
 //   POST /users___________________________________________
 router.post('/users', (req, res) => {

@@ -141,5 +141,13 @@ inner join KEYWORDS on KEYWORDS.KW_Id = KWxST.KW_Id where KEYWORDS.KW_Value = IN
 end
 $$
 
+-- Search Email _______________________________________________________________________________________________________
+DROP PROCEDURE IF EXISTS SearchEmail;
+DELIMITER $$
+create procedure SearchEmail(in IN_US_Email varchar(50))
+begin
+select USERS.US_Id,USERS.US_Name from USERS where USERS.US_Email = IN_US_Email;
+end
+$$
 
 

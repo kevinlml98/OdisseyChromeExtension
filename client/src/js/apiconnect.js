@@ -12,14 +12,7 @@ var datos;
 
 // GET/___________________________________
 function GET_HelloWorld() {
-    fetch(url, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'usuario': 1
-        },
-        mode: 'no-cors'
-    })
+    fetch(url)
         .then(response => response.json())
         .then(data => console.log(data)).catch(error => {
             console.log(error);
