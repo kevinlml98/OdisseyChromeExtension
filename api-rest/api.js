@@ -4,6 +4,14 @@ const router = express.Router();
 const mysqlConnection = require('./dbconection');
 
 
+//   GET prueba________________________
+router.get('/', (req, res) => {
+  var o = { Lo : 'lograste' };
+  res.json(o);
+});
+
+
+
 //   GET /users____________________________________________
 router.get('/users', (req, res) => {
 
@@ -19,7 +27,9 @@ router.get('/users', (req, res) => {
           res.json(result[0]);
         }
         else {
-          res.send('Not result');
+          res.json({
+            res : "not found"
+          });
         }
       });
 
@@ -61,9 +71,6 @@ router.get('/users/:id', (req, res) => {
       res.send("Access Blocked")
     }
   });
-
-
-
 
 });
 
@@ -201,7 +208,7 @@ router.get('/songs/:search', (req, res) => {
 
 
 
-      const search  = req.params['search'];
+      const search = req.params['search'];
 
       const sql = 'call SearchSoundtracks("' + search + '")';
 
