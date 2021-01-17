@@ -1,49 +1,43 @@
-
-
-
 // FETCH --> Retorna una promesa
 
-var url = "http://localhost:4000";
-var usuario = 1;
+var req = 'users';
+var id = 1;
+var url = `http://localhost:4000/${req}`;
 var nombre;
 var correo;
-var datos;
-
-
-// GET/___________________________________
-function GET_HelloWorld() {
-    fetch(url)
-        .then(response => response.json())
-        .then(data => console.log(data)).catch(error => {
-            console.log(error);
-        });
-
-}
-
-
 
 
 // GET/users___________________________________
 function GET_AllUsers(){
-    url = url + "/users";
-
     fetch( url, {
         method: 'GET',
         headers: {
-            'Content-Type': 'application/json',
-            'usuario' : '1'
-          },
-        mode : 'no-cors'
+            'usuario' : id
+          }
     })
     .then(response => response.json())
     .then(data => console.log(data)).catch( error => {
       console.log(error);
-    });
-    
+    });   
 }
 
+// GET/users___________________________________
+function GET_AllUsers(){
+    fetch( url, {
+        method: 'GET',
+        headers: {
+            'usuario' : id
+          }
+    })
+    .then(response => response.json())
+    .then(data => console.log(data)).catch( error => {
+      console.log(error);
+    });   
+}
+
+
 // GET/users/id___________________________________
-async function GET_Users(id){
+async function GET_Sound(){
 
     fetch( url + '/users/1', {
         method: 'GET',

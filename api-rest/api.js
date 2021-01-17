@@ -4,12 +4,6 @@ const router = express.Router();
 const mysqlConnection = require('./dbconection');
 
 
-//   GET prueba________________________
-router.get('/', (req, res) => {
-  var o = { Lo : 'lograste' };
-  res.json(o);
-});
-
 
 //   GET /checkuser/____________________________________
 router.get('/checkuser/:email', (req, res) => {
@@ -63,7 +57,8 @@ router.get('/users', (req, res) => {
 
     }
     else {
-      res.send("Access Blocked")
+      res.json({
+        status: "Access Blocked"});
     }
   });
 
@@ -88,14 +83,16 @@ router.get('/users/:id', (req, res) => {
           res.json(result[0]);
         }
         else {
-          res.send('Not result');
+          res.json({
+            status: "Not result"});
         }
       });
 
 
     }
     else {
-      res.send("Access Blocked")
+      res.json({
+        status: "Access Blocked"});
     }
   });
 
@@ -111,10 +108,12 @@ router.get('/users/exists/:id', (req, res) => {
 
     if (error) throw error;
     if (result[0].length > 0) {
-      res.send("User found")
+      res.json({
+        status: "User founded"});
     }
     else {
-      res.send('Not result');
+      res.json({
+        status: "Not result"});
     }
 
   });
@@ -138,7 +137,8 @@ router.post('/users', (req, res) => {
 
   mysqlConnection.query(sql, [userBody.name, userBody.password, userBody.email], error => {
     if (error) throw error;
-    res.send('User Addedd')
+    res.json({
+      status: "User added"});
   }
   );
 });
@@ -157,12 +157,14 @@ router.delete('/users/:id', (req, res) => {
       const { id } = req.params;
       mysqlConnection.query(`call DeleteUser(${id})`, error => {
         if (error) throw error;
-        res.send('User deleted');
+        res.json({
+          status: "User deleted"});
       });
 
     }
     else {
-      res.send("Access Blocked")
+      res.json({
+        status: "Access Blocked"});
     }
   });
 
@@ -187,7 +189,8 @@ router.get('/songs', (req, res) => {
           res.json(result);
         }
         else {
-          res.send('Not result');
+          res.json({
+            status: "Not result"});
         }
       });
 
@@ -195,7 +198,8 @@ router.get('/songs', (req, res) => {
 
     }
     else {
-      res.send("Access Blocked")
+      res.json({
+        status: "Access Blocked"});
     }
   });
 
@@ -216,13 +220,15 @@ router.delete('/songs/:id', (req, res) => {
       const { id } = req.params;
       mysqlConnection.query(`call DeleteSoundtracks(${id})`, error => {
         if (error) throw error;
-        res.send('Sound deleted');
+        res.json({
+          status: "Sound deleted"});
       });
 
 
     }
     else {
-      res.send("Access Blocked")
+      res.json({
+        status: "Access Blocked"});
     }
   });
 
@@ -252,14 +258,16 @@ router.get('/songs/:search', (req, res) => {
           res.json(result[0]);
         }
         else {
-          res.send('Not result');
+          res.json({
+            status: "Not result"});
         }
       });
 
 
     }
     else {
-      res.send("Access Blocked")
+      res.json({
+        status: "Access Blocked"});
     }
   });
 
