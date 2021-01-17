@@ -122,23 +122,18 @@ router.get('/users/exists/:id', (req, res) => {
 
 
 
-
-
 //   POST /users___________________________________________
 router.post('/users', (req, res) => {
-
-  console.log(req.body)
-  /*
-  const sql = `call AddUser(${email})`;
-
-  mysqlConnection.query(sql, error => {
+  const sql = `call AddUser(?)`;
+  const userBody = {
+    email: req.body.email
+  };
+  
+  mysqlConnection.query(sql, [userBody.email], error => {
     if (error) throw error;
     res.json({
-      status: "User added"});
-  }
-  );
-*/
-
+      status: "User Added"});
+  });
 });
 
 
