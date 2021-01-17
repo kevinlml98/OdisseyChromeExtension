@@ -8,13 +8,19 @@ body{
 }
 
 main {
-    background-color: #000;
+    background-color: #504d40;
     width: 100vw;
 }
 
 h3 {
+    padding: 2px 2px 2px;
     display: block;
-    color: #fff;
+    color:white;
+    font-weight: bold;
+}
+
+h4{
+    color: white;
 }
 
 iframe {
@@ -27,6 +33,7 @@ iframe {
 }
 
 button{
+    float:right;
     display: block;
     width: 25px;
     height: 25px;
@@ -37,18 +44,19 @@ button{
 
 .controls input{
     width: 68px;
-    height: 50px;
-    border: 5px solid #00f;
-    background-color: #000;
-    color: #00f;
+    height: 30px;
+    border: 2px solid #00f;
+    border-radius: 8px;
+    background-color:  #504d40;
+    color: #55f;
     font-size: 20px;
 }
 
 .controls input:hover{
-    border: 5px solid #99f;
-    color: #99f;
+    border: 2px solid #99f;
+    border-radius: 8px;
 }
 
 .barra {
-    width: 200px;
+    width: 100vw;
 }

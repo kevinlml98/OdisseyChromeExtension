@@ -4,6 +4,33 @@ const router = express.Router();
 const mysqlConnection = require('./dbconection');
 
 
+
+//   GET /checkuser/____________________________________
+router.get('/checkuser/:email', (req, res) => {
+
+  const email = req.params['email'];
+  const sql = 'call SearchEmail("' + email + '")';
+
+  mysqlConnection.query(sql, (error, result) => {
+    if (error) throw error;
+    if (result[0].length > 0) {
+      res.json({
+        exist: true,
+        body : result[0]
+      });
+    }
+    else {
+      res.json({
+        exist : false
+      });
+    }
+  });
+
+
+});
+
+
+
 //   GET /users____________________________________________
 router.get('/users', (req, res) => {
 
@@ -16,17 +43,22 @@ router.get('/users', (req, res) => {
       mysqlConnection.query('call ReturnAllUsers()', (error, result) => {
         if (error) throw error;
         if (result.length > 0) {
+
           res.json(result[0]);
+          
         }
         else {
-          res.send('Not result');
+          res.json({
+            res : "not found"
+          });
         }
       });
 
 
     }
     else {
-      res.send("Access Blocked")
+      res.json({
+        status: "Access Blocked"});
     }
   });
 
@@ -51,19 +83,18 @@ router.get('/users/:id', (req, res) => {
           res.json(result[0]);
         }
         else {
-          res.send('Not result');
+          res.json({
+            status: "Not result"});
         }
       });
 
 
     }
     else {
-      res.send("Access Blocked")
+      res.json({
+        status: "Access Blocked"});
     }
   });
-
-
-
 
 });
 
@@ -73,33 +104,36 @@ router.get('/users/:id', (req, res) => {
 router.get('/users/exists/:id', (req, res) => {
   const { id } = req.params;
   mysqlConnection.query(`call ReturnUser(${id})`, (error, result) => {
+
+
     if (error) throw error;
     if (result[0].length > 0) {
-      res.send("User found")
+      res.json({
+        status: "User founded"});
     }
     else {
-      res.send('Not result');
+      res.json({
+        status: "Not result"});
     }
 
   });
 });
 
+
+
+
 //   POST /users___________________________________________
 router.post('/users', (req, res) => {
-
-
-  const sql = `call AddUser(?,?,?)`;
+  const sql = `call AddUser(?)`;
   const userBody = {
-    name: req.body.name,
-    password: req.body.password,
     email: req.body.email
   };
-
-  mysqlConnection.query(sql, [userBody.name, userBody.password, userBody.email], error => {
+  
+  mysqlConnection.query(sql, [userBody.email], error => {
     if (error) throw error;
-    res.send('User Addedd')
-  }
-  );
+    res.json({
+      status: "User Added"});
+  });
 });
 
 
@@ -116,12 +150,14 @@ router.delete('/users/:id', (req, res) => {
       const { id } = req.params;
       mysqlConnection.query(`call DeleteUser(${id})`, error => {
         if (error) throw error;
-        res.send('User deleted');
+        res.json({
+          status: "User deleted"});
       });
 
     }
     else {
-      res.send("Access Blocked")
+      res.json({
+        status: "Access Blocked"});
     }
   });
 
@@ -146,7 +182,8 @@ router.get('/songs', (req, res) => {
           res.json(result);
         }
         else {
-          res.send('Not result');
+          res.json({
+            status: "Not result"});
         }
       });
 
@@ -154,7 +191,8 @@ router.get('/songs', (req, res) => {
 
     }
     else {
-      res.send("Access Blocked")
+      res.json({
+        status: "Access Blocked"});
     }
   });
 
@@ -175,13 +213,15 @@ router.delete('/songs/:id', (req, res) => {
       const { id } = req.params;
       mysqlConnection.query(`call DeleteSoundtracks(${id})`, error => {
         if (error) throw error;
-        res.send('Sound deleted');
+        res.json({
+          status: "Sound deleted"});
       });
 
 
     }
     else {
-      res.send("Access Blocked")
+      res.json({
+        status: "Access Blocked"});
     }
   });
 
@@ -201,7 +241,7 @@ router.get('/songs/:search', (req, res) => {
 
 
 
-      const search  = req.params['search'];
+      const search = req.params['search'];
 
       const sql = 'call SearchSoundtracks("' + search + '")';
 
@@ -211,14 +251,16 @@ router.get('/songs/:search', (req, res) => {
           res.json(result[0]);
         }
         else {
-          res.send('Not result');
+          res.json({
+            status: "Not result"});
         }
       });
 
 
     }
     else {
-      res.send("Access Blocked")
+      res.json({
+        status: "Access Blocked"});
     }
   });
 
