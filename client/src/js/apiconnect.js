@@ -32,7 +32,7 @@ chrome.omnibox.onInputEntered.addListener(
 var id = 1;
 //var url = `http://localhost:4000/${req}`;
 var nombre;
-var correo;
+//var correo;
 
 
 // GET/users___________________________________
@@ -76,18 +76,23 @@ function GET_Soundtracks(req){
 
 
 // POST ___________________________________
-async function PostData(){
+function PostData(correo){
+    var url = `http://localhost:4000/users`;
     fetch( url, {
         method: 'POST',
         header :{
-            'usuario' : usuario
+            'usuario' : id
         },
         body: JSON.stringify({
-            name : nombre,
-            email : correo
+            'email' : correo
         })
-    }).then( (response) => response.json()).then(data => {
-        
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+    
+    }).catch( error => {
+      console.log(error);
     });
 }
 
