@@ -1,38 +1,47 @@
+
+var id = 1;
+var correo;
+var globalSongs;
+var globalSelectedSong;
+
+
+
+
 // OMNIBOX _________________________________________________________
-
-
 
 chrome.omnibox.onInputChanged.addListener(
 
-
     function(text, suggest)
     {
-        suggest([
-            { content: "primera opcion", description: "1er opcion " + text },
-            { content: "segunda opcion" , description: "2da opcion " + text }
-        ]);
+
+        GET_Soundtracks(text);
+
+        if(globalSongs != undefined){
+            if(globalSongs.length > 0){
+                for (var i = 0; i < globalSongs.length; i++) {
+                   suggest([
+                    { content: globalSongs[i]["ST_URL"], description: globalSongs[i]["ST_Title"]}
+                    ]);
+                 }
+            }else{
+                suggest([
+                    { content: "primera opcion", description: "Not result for: " + text }
+                ]);
+            }
+        }
+        
+        
     }
 
-
-
-
 );
 
+chrome.omnibox.onInputEntered.addListener(function(text) { 
+    globalSelectedSong = text;
+    console.log(globalSelectedSong);
+    id2 = globalSelectedSong;
 
-chrome.omnibox.onInputEntered.addListener(
+});
 
-
-
-);
-
-
-// FETCH --> Retorna una promesa
-
-//var req = 'users';
-var id = 1;
-//var url = `http://localhost:4000/${req}`;
-var nombre;
-//var correo;
 
 
 // GET/users___________________________________
@@ -41,6 +50,7 @@ function GET_AllUsers(){
     fetch( url, {
         method: 'GET',
         headers: {
+            'content-type': 'application/json',
             'usuario' : id
           }
     })
@@ -52,26 +62,23 @@ function GET_AllUsers(){
 
 // GET/songs___________________________________
 function GET_Soundtracks(req){
+
     var url = `http://localhost:4000/songs/${req}`;
     fetch( url, {
         method: 'GET',
         headers: {
+            'content-type': 'application/json',
             'usuario' : id
           }
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data);
-        console.log(data.length);
-
-    
+        globalSongs = data;
     }).catch( error => {
       console.log(error);
-    });   
+    }); 
+
 }
-
-
-
 
 
 
