@@ -6,6 +6,8 @@ const btn = document.getElementById("btnplay");
 const videoProgress = document.getElementById("video_progress_bar");
 const art = document.getElementById("artista");
 const can = document.getElementById("titulo");
+const alb = document.getElementById("album");
+const bgi = document.getElementsByClassName("media_image")[0];
 
 let message = {
     intended : 'player',
@@ -34,6 +36,10 @@ function gotMessage(msg)
             can.innerHTML = msg.cancion;
             //Nombre del artista
             art.innerHTML = msg.artista;
+            //Nombre del album
+            alb.innerHTML = msg.album;
+
+            bgi.style.backgroundImage = `url('${msg.cover}')`;
             
             //Valor del volumen igual al player
             volumen.setAttribute("value",msg.volumen);
@@ -46,9 +52,11 @@ function gotMessage(msg)
             if(msg.estado == true)
             {
                 btn.setAttribute("value","pause");
+                btn.setAttribute("class","btnpause");
                 
             }else{
                 btn.setAttribute("value","play");
+                btn.setAttribute("class","btnplay");
                 
             }
         }else if (msg.action == "progressBar")
