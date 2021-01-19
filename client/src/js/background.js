@@ -26,7 +26,7 @@ function sendMsg(msg)
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
         videoId: songId,
-        playerVars: {'autoplay': 1, 'controls': 0,  'loop': 1},
+        playerVars: {'autoplay': 0, 'controls': 0,  'loop': 1},
         events: {
             'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange
@@ -35,8 +35,7 @@ function onYouTubeIframeAPIReady() {
 }
 
 function onPlayerReady(event) {
-    console.log('player listo')
-    isPlaying = true;
+    console.log('player listo');
 }
 
 //Intento de que la barra de progreso avance con forme al video onPlayerStateChange(event) y onPlay()
@@ -78,8 +77,10 @@ function gotMessage(msg)
             message = {
                 intended: "popup",
                 action: "status",
-                cancion: "No Name  Song",
-                artista: "No Name Artist",
+                artista: ArtistName,
+                cancion: SongName,
+                album: AlbumName,
+                cover: CoverImage,
                 estado: isPlaying,
                 volumen: player.getVolume(),
                 videoLenght: player.getDuration(),

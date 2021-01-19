@@ -7,9 +7,12 @@ var canUseApp = false;
 var globalSongs;
 var globalSelectedSong;
 var sugerencias;
-var cancion = 'ADDICT';
+var SongName = 'Adicct';
 var request;
-var artista = 'Hazbin Hotel';
+var ArtistName = 'Hazbin Hotel';
+var AlbumName = ''
+//var CoverImage = 'https://static.wikia.nocookie.net/hazbinhotel/images/3/37/Addict_-_Imagen_promocional.png/revision/latest?cb=20200717232327&path-prefix=es';
+var CoverImage = 'https://images-na.ssl-images-amazon.com/images/I/71ta0e6TEGL._AC_SL1416_.jpg';
 
 
 chrome.identity.getProfileUserInfo(function (userInfo) {
