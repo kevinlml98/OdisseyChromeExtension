@@ -248,7 +248,10 @@ router.get('/songs/:search', (req, res) => {
       mysqlConnection.query(sql, (error, result) => {
         if (error) throw error;
         if (result[0].length > 0) {
-          res.json(result[0]);
+          res.json({
+            status: "Found",
+            body:result[0]
+          });
         }
         else {
           res.json({

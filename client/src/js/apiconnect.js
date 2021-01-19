@@ -1,106 +1,122 @@
+console.log("API connect start succesful");
 
 var id = 1;
 var correo;
 var globalSongs;
 var globalSelectedSong;
+var sugerencias;
+var request;
+var cancion = 'ADDICT';
+var artista =  'Hazbin Hotel';
 
-
-
+//Envia un mensaje formato JSON por medio de la funcion especifia de API de Chrome
+function sendMsg(msg)
+{
+    chrome.runtime.sendMessage(msg);
+}
 
 // OMNIBOX _________________________________________________________
 
 chrome.omnibox.onInputChanged.addListener(
-
-    function(text, suggest)
-    {
-
-        GET_Soundtracks(text);
-
-        if(globalSongs != undefined){
-            if(globalSongs.length > 0){
-                for (var i = 0; i < globalSongs.length; i++) {
-                   suggest([
-                    { content: globalSongs[i]["ST_URL"], description: globalSongs[i]["ST_Title"]}
+    function (text, suggest) {
+        (async () => {
+            globalSongs = await GET_Soundtracks(text);
+            console.log(globalSongs);
+            if (globalSongs.status != "Not result") {
+                for (element of globalSongs.body) {
+                    suggest([
+                        { content: element.ST_URL, description: element.ST_Title, deletable: true  }
                     ]);
-                 }
-            }else{
+                }
+            }
+            else {
                 suggest([
-                    { content: "primera opcion", description: "Not result for: " + text }
+                    { content: " ", description: "Not result for: " + text}
                 ]);
             }
-        }
-        
-        
+        })();
     }
-
 );
 
-chrome.omnibox.onInputEntered.addListener(function(text) { 
-    globalSelectedSong = text;
-    console.log(globalSelectedSong);
-    id2 = globalSelectedSong;
-
+chrome.omnibox.onInputEntered.addListener(function (text) {
+    if(text !=" ")
+    {
+        console.log(typeof(text));
+        console.log(text);
+        for(elem of globalSongs.body)
+        {
+            if(elem.ST_URL == text)
+            {
+                cancion = elem.ST_Title;
+                artista = elem.ST_Artist;
+                break;
+            }
+        }
+        text2 = 'Xd-luMQNkVw';
+        player.loadVideoById(text);
+        player.playVideo();
+        isPlaying = true;
+    }
 });
 
 
 
 // GET/users___________________________________
-function GET_AllUsers(){
+function GET_AllUsers() {
     var url = `http://localhost:4000/users`;
-    fetch( url, {
+    fetch(url, {
         method: 'GET',
         headers: {
             'content-type': 'application/json',
-            'usuario' : id
-          }
+            'usuario': id
+        }
     })
     .then(response => response.json())
-    .then(data => console.log(data)).catch( error => {
-      console.log(error);
-    });   
+    .then(data => console.log(data)).catch(error => {
+        console.log(error);
+    });
 }
 
 // GET/songs___________________________________
-function GET_Soundtracks(req){
-
+async function GET_Soundtracks(req) {
     var url = `http://localhost:4000/songs/${req}`;
-    fetch( url, {
+    var response = await fetch(url, {
         method: 'GET',
         headers: {
             'content-type': 'application/json',
-            'usuario' : id
-          }
+            'usuario': id
+        }
     })
     .then(response => response.json())
     .then(data => {
-        globalSongs = data;
-    }).catch( error => {
-      console.log(error);
-    }); 
-
+        return data;
+    }).catch(error => {
+        console.log(error);
+    });
+    return response;
 }
 
 
 
 // POST ___________________________________
-function PostData(correo){
+function PostData(correo) {
     var url = `http://localhost:4000/users`;
-    fetch( url, {
+    fetch(url, {
         method: 'POST',
-        header :{
-            'usuario' : id
+        header: {
+            'usuario': id
         },
         body: JSON.stringify({
-            'email' : correo
+            'email': correo
         })
     })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-    
-    }).catch( error => {
-      console.log(error);
-    });
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+
+        }).catch(error => {
+            console.log(error);
+        });
 }
 
 
