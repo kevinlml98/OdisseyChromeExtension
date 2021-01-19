@@ -1,14 +1,8 @@
 console.log("bg has been started");
-
+var testThread;
 let message;
-
 let isPlaying = false;
 
-//Envia un mensaje formato JSON por medio de la funcion especifia de API de Chrome
-function sendMsg(msg)
-{
-    chrome.runtime.sendMessage(msg);
-}
 
 // Create player 
 
@@ -19,12 +13,19 @@ var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 var player;
-var id = 'Xd-luMQNkVw';
-var id2 = 'ulfeM8JGq7s';
+var songId = 'ulfeM8JGq7s';
+
+
+//Envia un mensaje formato JSON por medio de la funcion especifia de API de Chrome
+function sendMsg(msg)
+{
+    chrome.runtime.sendMessage(msg);
+}
+
 
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
-        videoId: id2,
+        videoId: songId,
         playerVars: {'autoplay': 1, 'controls': 0,  'loop': 1},
         events: {
             'onReady': onPlayerReady,
@@ -39,7 +40,6 @@ function onPlayerReady(event) {
 }
 
 //Intento de que la barra de progreso avance con forme al video onPlayerStateChange(event) y onPlay()
-var testThread;
 
 function onPlayerStateChange(event)
 {
