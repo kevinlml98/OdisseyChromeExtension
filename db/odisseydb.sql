@@ -5,7 +5,8 @@ use odisseydb;
 
 create table USERS(
 US_Id int not null auto_increment primary key,
-US_Email varchar(50) not null
+US_Email varchar(50) not null,
+US_Admin int not null default 0
 );
 
 create table KEYWORDS(
@@ -17,7 +18,9 @@ create table SOUNDTRACKS(
 ST_Id int not null auto_increment primary key,
 ST_URL varchar(255) not null,
 ST_Artist varchar(50) not null,
-ST_Title varchar(30) not null
+ST_Title varchar(30) not null,
+ST_Album varchar(30) not null,
+ST_Image varchar(255)
 );
 
 
@@ -64,11 +67,20 @@ select * from USERS where US_Id = IN_US_Id;
 end
 $$
 
+DROP PROCEDURE IF EXISTS AssingAdminUser;
+DELIMITER $$
+create procedure AssingAdminUser(in IN_US_Id int)
+begin
+update USERS set US_Admin = 1 where US_Id = IN_US_ID;
+end
+$$
+
 DROP PROCEDURE IF EXISTS DeleteUser;
 DELIMITER $$
 create procedure DeleteUser(in IN_US_Id int)
 begin
-delete from USERS where US_Id = IN_US_Id;
+delete from USxST where USxST.US_Id = IN_US_Id;
+delete from USERS where USERS.US_Id = IN_US_Id;
 end
 $$
 
@@ -96,16 +108,17 @@ DROP PROCEDURE IF EXISTS DeleteSoundtracks;
 DELIMITER $$
 create procedure DeleteSoundtracks(in IN_ST_Id int)
 begin
-delete from SOUNDTRACKS where ST_Id = IN_ST_Id;
+delete from KWxST where KWxST.ST_Id = IN_ST_Id;
+delete from SOUNDTRACKS where SOUNDTRACKS.ST_Id = IN_ST_Id;
 end
 $$
 
 
 DROP PROCEDURE IF EXISTS AddSoundtacks;
 DELIMITER $$
-create procedure AddSoundtacks(in IN_ST_URL varchar(255), in IN_ST_Artist varchar(50), in IN_ST_Title varchar(30))
+create procedure AddSoundtacks(in IN_ST_URL varchar(255), in IN_ST_Artist varchar(50), in IN_ST_Title varchar(30),in IN_ST_Album varchar(30))
 begin
-insert into SOUNDTRACKS(ST_URL,ST_Artist,ST_Title) values (IN_ST_URL, IN_ST_Artist, IN_ST_Title);
+insert into SOUNDTRACKS(ST_URL,ST_Artist,ST_Title,ST_Album) values (IN_ST_URL, IN_ST_Artist, IN_ST_Title,IN_ST_Album);
 end
 $$
 
@@ -134,7 +147,7 @@ DROP PROCEDURE IF EXISTS SearchSoundtracks;
 DELIMITER $$
 create procedure SearchSoundtracks(in IN_KW_Value varchar(30))
 begin
-select SOUNDTRACKS.ST_Id,SOUNDTRACKS.ST_Title,SOUNDTRACKS.ST_Artist,SOUNDTRACKS.ST_URL from SOUNDTRACKS
+select SOUNDTRACKS.ST_Id,SOUNDTRACKS.ST_Title,SOUNDTRACKS.ST_Artist,SOUNDTRACKS.ST_URL,SOUNDTRACKS.ST_Album,SOUNDTRACKS.ST_Image from SOUNDTRACKS
 inner join KWxST on KWxST.ST_Id = SOUNDTRACKS.ST_Id
 inner join KEYWORDS on KEYWORDS.KW_Id = KWxST.KW_Id where KEYWORDS.KW_Value = IN_KW_Value;
 end

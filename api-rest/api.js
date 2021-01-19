@@ -15,12 +15,12 @@ router.get('/checkuser/:email', (req, res) => {
     if (result[0].length > 0) {
       res.json({
         exist: true,
-        body : result[0]
+        body: result[0]
       });
     }
     else {
       res.json({
-        exist : false
+        exist: false
       });
     }
   });
@@ -44,11 +44,11 @@ router.get('/users', (req, res) => {
         if (result.length > 0) {
 
           res.json(result[0]);
-          
+
         }
         else {
           res.json({
-            res : "not found"
+            res: "not found"
           });
         }
       });
@@ -57,7 +57,8 @@ router.get('/users', (req, res) => {
     }
     else {
       res.json({
-        status: "Access Blocked"});
+        status: "Access Blocked"
+      });
     }
   });
 
@@ -83,7 +84,8 @@ router.get('/users/:id', (req, res) => {
         }
         else {
           res.json({
-            status: "Not result"});
+            status: "Not result"
+          });
         }
       });
 
@@ -91,7 +93,8 @@ router.get('/users/:id', (req, res) => {
     }
     else {
       res.json({
-        status: "Access Blocked"});
+        status: "Access Blocked"
+      });
     }
   });
 
@@ -108,11 +111,13 @@ router.get('/users/exists/:id', (req, res) => {
     if (error) throw error;
     if (result[0].length > 0) {
       res.json({
-        status: "User founded"});
+        status: "User founded"
+      });
     }
     else {
       res.json({
-        status: "Not result"});
+        status: "Not result"
+      });
     }
 
   });
@@ -127,11 +132,12 @@ router.post('/users', (req, res) => {
   const userBody = {
     email: req.body.email
   };
-  
+
   mysqlConnection.query(sql, [userBody.email], error => {
     if (error) throw error;
     res.json({
-      status: "User Added"});
+      status: "User Added"
+    });
   });
 });
 
@@ -145,18 +151,25 @@ router.delete('/users/:id', (req, res) => {
     if (error) throw console.log(error);
     if (result[0].length > 0) {
 
+      if (parseInt(result[0][0].US_Admin)) {
+        const { id } = req.params;
+        mysqlConnection.query(`call DeleteUser(${id})`, error => {
+          if (error) throw error;
 
-      const { id } = req.params;
-      mysqlConnection.query(`call DeleteUser(${id})`, error => {
-        if (error) throw error;
+          res.json({
+            status: "User deleted"
+          });
+        });
+      } else {
         res.json({
-          status: "User deleted"});
-      });
-
+          status: "Not Admin Permission"
+        })
+      }
     }
     else {
       res.json({
-        status: "Access Blocked"});
+        status: "Access Blocked"
+      });
     }
   });
 
@@ -182,7 +195,8 @@ router.get('/songs', (req, res) => {
         }
         else {
           res.json({
-            status: "Not result"});
+            status: "Not result"
+          });
         }
       });
 
@@ -191,7 +205,8 @@ router.get('/songs', (req, res) => {
     }
     else {
       res.json({
-        status: "Access Blocked"});
+        status: "Access Blocked"
+      });
     }
   });
 
@@ -208,19 +223,25 @@ router.delete('/songs/:id', (req, res) => {
     if (error) throw console.log(error);
     if (result[0].length > 0) {
 
-
-      const { id } = req.params;
-      mysqlConnection.query(`call DeleteSoundtracks(${id})`, error => {
-        if (error) throw error;
+      if (parseInt(result[0][0].US_Admin)) {
+        const { id } = req.params;
+        mysqlConnection.query(`call DeleteSoundtracks(${id})`, error => {
+          if (error) throw error;
+          res.json({
+            status: "Sound deleted"
+          });
+        });
+      } else {
         res.json({
-          status: "Sound deleted"});
-      });
-
+          status: "Not Admin Permission"
+        })
+      }
 
     }
     else {
       res.json({
-        status: "Access Blocked"});
+        status: "Access Blocked"
+      });
     }
   });
 
@@ -249,12 +270,13 @@ router.get('/songs/:search', (req, res) => {
         if (result[0].length > 0) {
           res.json({
             status: "Found",
-            body:result[0]
+            body: result[0]
           });
         }
         else {
           res.json({
-            status: "Not result"});
+            status: "Not result"
+          });
         }
       });
 
@@ -262,7 +284,8 @@ router.get('/songs/:search', (req, res) => {
     }
     else {
       res.json({
-        status: "Access Blocked"});
+        status: "Access Blocked"
+      });
     }
   });
 
