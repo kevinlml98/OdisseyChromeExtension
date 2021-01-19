@@ -30,7 +30,7 @@ chrome.omnibox.onInputChanged.addListener(
             if (globalSongs.status != "Not result") {
                 for (element of globalSongs.body) {
                     suggest([
-                        { content: element.ST_URL, description: element.ST_Title, deletable: true }
+                        { content: element.ST_URL, description: element.ST_Title + " - " + element.ST_Artist, deletable: true }
                     ]);
                 }
             }

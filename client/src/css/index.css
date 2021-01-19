@@ -2,15 +2,10 @@
     padding: 0;
     margin: 0;
 }
-
-body{
-    width: 240px;
+body {
+    width: 500px;
 }
 
-main {
-    background-color: #504d40;
-    width: 100vw;
-}
 
 h3 {
     padding: 2px 2px 2px;
@@ -32,31 +27,122 @@ iframe {
     display: flex;
 }
 
-button{
-    float:right;
-    display: block;
-    width: 25px;
-    height: 25px;
-    background-color: #4a5;
-} button:hover{
-    background-color: #8e9;
+
+/*
+
+Barra ______________________________
+
+*/
+
+.barra_container {
+    margin-top: 10px;
+    width: 300px;
+  }
+  
+.barra {
+    -webkit-appearance: none;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    height: 10px;
+    background: lightskyblue;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+  
+.barra:hover {
+    opacity: 1;
+}
+  
+.barra::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    background: blue;
+    cursor: pointer;
+}
+  
+
+
+
+/*
+
+Posicionamiento de cajas___________________________________
+
+*/
+
+.media_controls_ui{
+    
+    text-align: center;
+    width: 300px;
+    height: 220px;
+    background-color: #000;
+    float: left;
 }
 
+.media_image_id{
+    width: 200px;
+    height: 220px;
+    float: left;
+}
+
+.media_image_id img{
+    width: 200px;
+    height: 220px;
+}
+
+/*
+
+Botonera _____________________________________________
+
+*/
+
+.controls {
+    margin-top: 10px;
+    width: 300px;
+}
+
+/*
+
+Botones _____________________________________________
+
+*/
 .controls input{
-    width: 68px;
-    height: 30px;
-    border: 2px solid #00f;
-    border-radius: 8px;
-    background-color:  #504d40;
-    color: #55f;
-    font-size: 20px;
+    background-size: cover;
+    background-color: transparent;
+    background-repeat:no-repeat;
+    height:30px;
+    width: 30px;
+    background-position:center;
+    border: none;
+    margin-left: 25px;
+    font-size: 0px;
+}
+
+.controls input:focus{
+    box-shadow: #000;
 }
 
 .controls input:hover{
-    border: 2px solid #99f;
-    border-radius: 8px;
+    opacity: 0.5;
 }
 
-.barra {
-    width: 100vw;
+.btnp{
+    background-image:url(btnbefore.png);
+}
+
+.btnplay{
+    background-image:url(btnplay.png);
+}
+
+
+.btnpause{
+    background-image:url(btnpause.png);
+}
+
+.btnnext{
+    background-image:url(btnnext.png);
 }
