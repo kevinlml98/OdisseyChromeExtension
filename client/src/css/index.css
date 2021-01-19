@@ -83,15 +83,19 @@ Posicionamiento de cajas___________________________________
     float: left;
 }
 
-.media_image_id{
+.media_image{
     width: 200px;
     height: 220px;
-    float: left;
+    float: right;
+    background-image: url("logo.jpg");
+    background-size: cover;
+
 }
 
-.media_image_id img{
+.img_gradient{
     width: 200px;
     height: 220px;
+    background-image: linear-gradient(to right, #000, rgba(0,0,0,0));
 }
 
 /*
