@@ -1,7 +1,6 @@
 console.log("API connect start succesful");
 
-var id = 1;
-var correo;
+var userId = 1;
 var globalSongs;
 var globalSelectedSong;
 var sugerencias;
@@ -52,7 +51,7 @@ chrome.omnibox.onInputEntered.addListener(function (text) {
                 break;
             }
         }
-        text2 = 'Xd-luMQNkVw';
+        //text2 = 'Xd-luMQNkVw';
         player.loadVideoById(text);
         player.playVideo();
         isPlaying = true;
@@ -68,7 +67,7 @@ function GET_AllUsers() {
         method: 'GET',
         headers: {
             'content-type': 'application/json',
-            'usuario': id
+            'usuario': userId
         }
     })
     .then(response => response.json())
@@ -84,7 +83,7 @@ async function GET_Soundtracks(req) {
         method: 'GET',
         headers: {
             'content-type': 'application/json',
-            'usuario': id
+            'usuario': userId
         }
     })
     .then(response => response.json())
@@ -104,7 +103,7 @@ function PostData(correo) {
     fetch(url, {
         method: 'POST',
         header: {
-            'usuario': id
+            'usuario': userId
         },
         body: JSON.stringify({
             'email': correo

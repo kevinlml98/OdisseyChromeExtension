@@ -19,12 +19,11 @@ var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 var player;
-var id = 'Xd-luMQNkVw';
-var id2 = 'ulfeM8JGq7s';
+var songId = 'ulfeM8JGq7s';
 
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
-        videoId: id2,
+        videoId: songId,
         playerVars: {'autoplay': 1, 'controls': 0,  'loop': 1},
         events: {
             'onReady': onPlayerReady,
