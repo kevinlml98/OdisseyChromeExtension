@@ -4,7 +4,6 @@ const router = express.Router();
 const mysqlConnection = require('./dbconection');
 
 
-
 //   GET /checkuser/____________________________________
 router.get('/checkuser/:email', (req, res) => {
 
