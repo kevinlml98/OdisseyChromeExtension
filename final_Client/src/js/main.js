@@ -130,7 +130,8 @@ function gotMessage(msg)
             alb.innerHTML = msg.album;
             */
             //bgi.style.backgroundImage = `url('${msg.cover}')`;
-            
+            $("#image img").attr("url",`url('${msg.cover}')`)
+
             //Valor del volumen igual al player
             volumeslider.setAttribute("value",msg.volumen);
             
@@ -209,7 +210,7 @@ function fetchMusicDetails(){
 
     // Title and Artist
     playlist_status.innerHTML = title[playlist_index];
-    playlist_artist.innerHTML = artists[playlist_index];
+    playlist_album.innerHTML = artists[playlist_index];
 
     // Audio
     audio.src = dir + playlist[playlist_index] + ext;
