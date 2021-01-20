@@ -33,8 +33,16 @@ chrome.identity.getProfileUserInfo(function (userInfo) {
  */
 chrome.omnibox.onInputChanged.addListener(
     function (text, suggest) {
+        
+
         (async () => {
-            globalSongs = await GET_Soundtracks(text);
+
+            if(text != "ALL"){
+                globalSongs = await GET_Soundtracks(text);
+            }else{
+                globalSongs = await GET_AllSoundtracks();
+            }
+
             console.log(globalSongs);
             if (globalSongs.status != "Not result") {
                 for (element of globalSongs.body) {
@@ -48,7 +56,12 @@ chrome.omnibox.onInputChanged.addListener(
                     { content: " ", description: "Not result for: " + text }
                 ]);
             }
+
+
+
         })();
+
+
     }
 );
 
@@ -128,8 +141,8 @@ async function GET_Soundtracks(req) {
  * @returns {Promise} Object
  */
 async function GET_AllSoundtracks() {
-    var path = `/songs`;
-    fetch(globalUrl + path, {
+    var path = '/songs';
+    var response = await fetch(globalUrl + path, {
         method: 'GET',
         headers: {
             'content-type': 'application/json',
@@ -140,9 +153,11 @@ async function GET_AllSoundtracks() {
         .then(data => {
             console.log(data);
             console.log(data.length);
+            return data;
         }).catch(error => {
             console.log(error);
         });
+        return response;
 }
 
 // POST/users ___________________________________
