@@ -15,14 +15,18 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 var player;
 var songId = 'ulfeM8JGq7s';
 
-
-//Envia un mensaje formato JSON por medio de la funcion especifia de API de Chrome
+/**
+ * Envia un mensaje por medio del api de chrome
+ * @param {Object} msg - Mensaje en formato JSON
+ */
 function sendMsg(msg)
 {
     chrome.runtime.sendMessage(msg);
 }
 
-
+/**
+ * Funcion que es llamada una vez se carga el iframe API de youtube para crear el visor de video embebido
+ */
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
         videoId: songId,
@@ -34,13 +38,23 @@ function onYouTubeIframeAPIReady() {
     });
 }
 
+/**
+ * Funcion que es llamada desde onYoutubeIframeAPIReady, cuando el reproductor esta listo para usarse
+ * @see {@link onYouTubeIframeAPIReady}
+ * @param {Object} event 
+ */
 function onPlayerReady(event) {
-    console.log('player listo')
-    isPlaying = true;
+    console.log('player listo');
 }
 
 //Intento de que la barra de progreso avance con forme al video onPlayerStateChange(event) y onPlay()
 
+/**
+ * Funcion que es llamada desde onYoutubeIframeAPIReady, cuando el reproductor cambia de estado
+ * por ejemplo pausa, play, cargando, etc.
+ * @see {@link onYouTubeIframeAPIReady}
+ * @param {Object} event 
+ */
 function onPlayerStateChange(event)
 {
     if(event.data == 1)
@@ -52,6 +66,10 @@ function onPlayerStateChange(event)
     }
 }
 
+/**
+ * Funcion Auxiliar de onPlayerStateChange, para enviar updates del progreso del video al PopUp
+ * @see {@link onPlayerStateChange}
+ */
 function onPlay()
 {
     let time = player.getCurrentTime();
@@ -65,9 +83,16 @@ function onPlay()
 }
 
 // onMessage listener
-chrome.runtime.onMessage.addListener(gotMessage);
+/**
+ * Funcion del API de Chrome para recivir mensajes. 
+ * Dependiendo de la accion especificada hace acciones multimedia,
+ *  o bien envia informacion al PopUp.
+ * @see {@link sendStatus}
+ * @param {Object} msg 
+ */
+chrome.runtime.onMessage.addListener(
 
-function gotMessage(msg)
+function (msg)
 {
     console.log(msg);
 
@@ -75,18 +100,7 @@ function gotMessage(msg)
     {        
         if (msg.txt == "Hello from the other side")
         {
-            message = {
-                intended: "popup",
-                action: "status",
-                cancion: "No Name  Song",
-                artista: "No Name Artist",
-                estado: isPlaying,
-                volumen: player.getVolume(),
-                videoLenght: player.getDuration(),
-                videoProgress: player.getCurrentTime()
-            };
-            
-            sendMsg(message);
+            sendStatus();
         }
         else if(msg.action == "videoPlay")
         {
@@ -107,4 +121,26 @@ function gotMessage(msg)
             player.seekTo(msg.value);
         }
     }
+});
+
+/**
+ * Envia al PopUp la informacion que este necesita para desplegarse de forma correcta, 
+ * y acorde al estado de la cancion que actualmente se escucha
+ */
+function sendStatus()
+{
+    message = {
+        intended: "popup",
+        action: "status",
+        artista: ArtistName,
+        cancion: SongName,
+        album: AlbumName,
+        cover: CoverImage,
+        estado: isPlaying,
+        volumen: player.getVolume(),
+        videoLenght: player.getDuration(),
+        videoProgress: player.getCurrentTime()
+    };
+    
+    sendMsg(message);
 }

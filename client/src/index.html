@@ -18,35 +18,44 @@
 
     <main>
     
-    <section class="info">
-        <article>
-            <div id="player"></div>
-        </article>
-        <article>
-            <h3 id="titulo"></h3>
-            <h3 id="artista"></h3>
-        </article>
-    </section>
-
-    <button id="vis">👀</button>
-
-    <section class="controls"> 
-        
-        <input type="button" id="btnp" value="<l">
-        <input type="button" id="btnplay" value="pause">
-        <input type="button" id="btnnext" value="l>">
-    </section>
-
-    <section>
-        <h4>Progreso</h4>
-        <input type="range" name="video_progress_bar" id="video_progress_bar" min="0" step="1" width="200px" class="barra">
-    </section>
+    <div class="media_controls_ui">
+        <section class="info">
+            <article>
+                <div id="player"></div>
+            </article>
+            <article>
+                <h3 id="titulo"></h3>
+                <h3 id="artista"></h3>
+                <h3 id="album"></h3>
+            </article>
+        </section>
     
-    <section>
-        <h4>Volumen</h4>
-        <input type="range" name="volumen" id="volumen" value="100" min="0" max="100" step="1" width="200px" class="barra">
-        <output class="volumen-output" for="volumen"></output>
-    </section>
+        
+    
+        <section class="controls">  
+            <input class="btnp" type="button" id="btnp">
+            <input class="btnpause" type="button" id="btnplay">
+            <input class="btnnext" type="button" id="btnnext">
+            
+        </section>
+    
+        <section class="barra_container">
+            <h4>Progreso</h4>
+            <input type="range" name="video_progress_bar" id="video_progress_bar" min="0" step="1" width="200px" class="barra">
+        </section>
+        
+        <section class="barra_container">
+            <h4>Volumen</h4>
+            <input type="range" name="volumen" id="volumen" value="100" min="0" max="100" step="1" width="200px" class="barra">
+            <output class="volumen-output" for="volumen"></output>
+        </section>
+        
+    </div>
+    <div class="media_image" >
+        <div class="img_gradient"></div>
+    </div>
+
+
     </main>
 
     <!--Footer -->
