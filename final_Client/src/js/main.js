@@ -139,7 +139,14 @@ function gotMessage(msg)
             //videoProgress.setAttribute('value', msg.videoProgress);
             Duration = msg.videoLenght;
             CurrentTime = msg.videoProgress;
-            seektimeupdate();
+            if(msg.muteado == true){
+
+                mutebtn.setAttribute("value","muted");
+
+            }else{    
+                mutebtn.setAttribute("value","unmuted");
+            
+            }
             
             //Estado del boton de pausa/play segun el estado del player
             if(msg.estado == true)
@@ -152,6 +159,25 @@ function gotMessage(msg)
             }
         }else if (msg.action == "progressBar")
         {
+            CurrentTime = msg.CurrentTime;
+            Duration = msg.Duration;
+            if(Duration){
+                let nt = CurrentTime * (100 / Duration);
+                seekslider.value = nt;
+                var curmins = Math.floor(CurrentTime / 60);
+                var cursecs = Math.floor(CurrentTime - curmins * 60);
+                var durmins = Math.floor(Duration / 60);
+                var dursecs = Math.floor(Duration - durmins * 60);
+                if(cursecs < 10){cursecs = "0" + cursecs}
+                if(dursecs < 10){dursecs = "0" + dursecs}
+                if(curmins < 10){curmins = "0" + curmins}
+                if(durmins < 10){durmins = "0" + durmins}
+                curtimetext.innerHTML = curmins + ":" + cursecs;
+                durtimetext.innerHTML = durmins + ":" + dursecs;
+            }else{
+                curtimetext.innerHTML = "00" + ":" + "00";
+                durtimetext.innerHTML = "00" + ":" + "00";
+            }
             //Updades del progreso del video
             //videoProgress.setAttribute('value', msg.value); 
         }
@@ -166,7 +192,7 @@ sendMsg(message);
 playbtn.addEventListener("click", playPause);
 //nextbtn.addEventListener("click", nextSong);
 //prevbtn.addEventListener("click", prevSong);
-//mutebtn.addEventListener("click", mute);
+mutebtn.addEventListener("click", mute);
 //visibilitybtn.addEventListener("click", toggle);
 //seekslider.addEventListener("mousedown", function(event){seeking = true; seek(event);});
 //seekslider.addEventListener("mousemove", function(event){seek(event);});
@@ -237,11 +263,21 @@ function prevSong(){
     fetchMusicDetails();
 }
 function mute(){
-    if(player.isMuted()){
-        player.unMute();
+    if(mutebtn.value == "muted"){
+        mutebtn.setAttribute("value","unmuted");
+        message = {
+            intended: 'player',
+            action: 'AudioUnmute'
+        }
+        sendMsg(message);
         $("#mutebtn img").attr("src","images/speaker.png");
     }else{
-        player.mute();
+        mutebtn.setAttribute("value","muted");
+        message = {
+            intended: 'player',
+            action: 'AudioMute'
+        }
+        sendMsg(message);
         $("#mutebtn img").attr("src","images/mute.png");
     }
 }

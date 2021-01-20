@@ -72,13 +72,12 @@ function onPlayerStateChange(event)
  */
 function onPlay()
 {
-    let time = player.getCurrentTime();
     message = {
         intended: "popup",
         action: "progressBar",
-        value: time
+        CurrentTime: player.getCurrentTime(),
+        Duration: player.getDuration()
     };
-
     sendMsg(message);
 }
 
@@ -119,6 +118,13 @@ function (msg)
         }else if(msg.action == "progress")
         {
             player.seekTo(msg.value);
+
+        }else if(msg.action == "AudioMute"){
+            player.mute();
+
+        }else if(msg.action == "AudioUnmute"){
+            player.unMute()
+
         }
     }
 });
@@ -139,7 +145,8 @@ function sendStatus()
         estado: isPlaying,
         volumen: player.getVolume(),
         videoLenght: player.getDuration(),
-        videoProgress: player.getCurrentTime()
+        videoProgress: player.getCurrentTime(),
+        muteado: player.isMuted()
     };
     
     sendMsg(message);
