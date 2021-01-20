@@ -1,9 +1,9 @@
 // Define variables
 let audio, playbtn, title, poster, artists, mutebtn, seekslider, volumeslider, 
 seeking = false, seekto, curtimetext, durtimetext, playlist_status, dir, playlist, 
-ext, agent, playlist_artist, repeat, randomSong, CurrentTime, Duration;
+ext, agent, playlist_album, repeat, randomSong;
 
-
+var CurrentTime, Duration;
 
 /*
 // Initialization of YouTube Api
@@ -48,7 +48,7 @@ volumeslider = document.getElementById("volumeslider");
 curtimetext = document.getElementById("curtimetext");
 durtimetext = document.getElementById("durtimetext");
 playlist_status = document.getElementById("playlist_status");
-playlist_artist = document.getElementById("playlist_artist");
+playlist_album = document.getElementById("playlist_artist");
 repeat = document.getElementById("repeat");
 randomSong = document.getElementById("random");
 
@@ -121,24 +121,24 @@ function gotMessage(msg)
     {
         if(msg.action == "status")
         {
-            /*
+            
             //Titulo de la cancion
-            can.innerHTML = msg.cancion;
+            playlist_status.innerHTML = msg.artista+ " - " + msg.cancion;
             //Nombre del artista
-            art.innerHTML = msg.artista;
-            //Nombre del album
+            playlist_album.innerHTML = msg.album;
+            /*//Nombre del album
             alb.innerHTML = msg.album;
             */
             //bgi.style.backgroundImage = `url('${msg.cover}')`;
             
             //Valor del volumen igual al player
-            //volumen.setAttribute("value",msg.volumen);
+            volumeslider.setAttribute("value",msg.volumen);
             
             //Valor del progreso igual al largo del video, y progreso actual del video igual al player.
-            //videoProgress.setAttribute('max', msg.videoLenght);
-            //videoProgress.setAttribute('value', msg.videoProgress);
             Duration = msg.videoLenght;
             CurrentTime = msg.videoProgress;
+            seektimeupdate()
+            
             if(msg.muteado == true){
 
                 mutebtn.setAttribute("value","muted");
@@ -152,32 +152,18 @@ function gotMessage(msg)
             if(msg.estado == true)
             {
                 playbtn.setAttribute("value","pause");
+                $("#playpausebtn img").attr("src","images/pause-red.png");
                 
             }else{
                 playbtn.setAttribute("value","play");
-                
+                $("#playpausebtn img").attr("src","images/play-red.png");
+            
             }
         }else if (msg.action == "progressBar")
         {
             CurrentTime = msg.CurrentTime;
             Duration = msg.Duration;
-            if(Duration){
-                let nt = CurrentTime * (100 / Duration);
-                seekslider.value = nt;
-                var curmins = Math.floor(CurrentTime / 60);
-                var cursecs = Math.floor(CurrentTime - curmins * 60);
-                var durmins = Math.floor(Duration / 60);
-                var dursecs = Math.floor(Duration - durmins * 60);
-                if(cursecs < 10){cursecs = "0" + cursecs}
-                if(dursecs < 10){dursecs = "0" + dursecs}
-                if(curmins < 10){curmins = "0" + curmins}
-                if(durmins < 10){durmins = "0" + durmins}
-                curtimetext.innerHTML = curmins + ":" + cursecs;
-                durtimetext.innerHTML = durmins + ":" + dursecs;
-            }else{
-                curtimetext.innerHTML = "00" + ":" + "00";
-                durtimetext.innerHTML = "00" + ":" + "00";
-            }
+            seektimeupdate();
             //Updades del progreso del video
             //videoProgress.setAttribute('value', msg.value); 
         }
@@ -194,9 +180,9 @@ playbtn.addEventListener("click", playPause);
 //prevbtn.addEventListener("click", prevSong);
 mutebtn.addEventListener("click", mute);
 //visibilitybtn.addEventListener("click", toggle);
-//seekslider.addEventListener("mousedown", function(event){seeking = true; seek(event);});
-//seekslider.addEventListener("mousemove", function(event){seek(event);});
-//seekslider.addEventListener("mouseup", function(){seeking = false;});
+seekslider.addEventListener("mousedown", function(event){seeking = true; seek(event);});
+seekslider.addEventListener("mousemove", function(event){seek(event);});
+seekslider.addEventListener("mouseup", function(){seeking = false;});
 volumeslider.addEventListener("mousemove", setvolume);
 /*
 audio.addEventListener("timeupdate", function(){seektimeupdate();});
@@ -249,16 +235,16 @@ function playPause(element){
     }
 }
 function nextSong(){
-    playlist_index++;
-    if(playlist_index > playlist.length - 1){
-        playlist_index = 0;
+    message = {
+        intended: "API",
+        action: "nextSong"
     }
     fetchMusicDetails();
 }
 function prevSong(){
-    playlist_index--;
-    if(playlist_index < 0){
-        playlist_index = playlist.length - 1;
+    message = {
+        intended: "API",
+        action: "prevSong"
     }
     fetchMusicDetails();
 }
@@ -291,7 +277,7 @@ function seek(event){
             message ={
                 intended: 'player',
                 action: 'progress',
-                value: seekslider.value
+                value: seekto
             }
             sendMsg(message);
         }
