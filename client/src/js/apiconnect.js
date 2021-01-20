@@ -129,7 +129,7 @@ async function GET_Soundtracks(req) {
  */
 async function GET_AllSoundtracks() {
     var path = `/songs`;
-    fetch(globalUrl + path, {
+    var response = await fetch(globalUrl + path, {
         method: 'GET',
         headers: {
             'content-type': 'application/json',
@@ -140,9 +140,11 @@ async function GET_AllSoundtracks() {
         .then(data => {
             console.log(data);
             console.log(data.length);
+            return data;
         }).catch(error => {
             console.log(error);
         });
+        return response;
 }
 
 // POST/users ___________________________________
