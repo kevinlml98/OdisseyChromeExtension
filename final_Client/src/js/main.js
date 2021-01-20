@@ -132,7 +132,7 @@ function gotMessage(msg)
             //bgi.style.backgroundImage = `url('${msg.cover}')`;
             
             //Valor del volumen igual al player
-            volumen.setAttribute("value",msg.volumen);
+            //volumen.setAttribute("value",msg.volumen);
             
             //Valor del progreso igual al largo del video, y progreso actual del video igual al player.
             //videoProgress.setAttribute('max', msg.videoLenght);
@@ -255,7 +255,7 @@ function seek(event){
             message ={
                 intended: 'player',
                 action: 'progress',
-                value: v
+                value: seekslider.value
             }
             sendMsg(message);
         }
