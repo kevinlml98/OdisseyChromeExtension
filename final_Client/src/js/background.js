@@ -26,7 +26,7 @@ function sendMsg(msg)
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
         videoId: songId,
-        playerVars: {'autoplay': 0, 'controls': 0,  'loop': 1},
+        playerVars: {'autoplay': 1, 'controls': 0,  'loop': 1},
         events: {
             'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange
