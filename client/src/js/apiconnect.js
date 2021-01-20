@@ -11,8 +11,8 @@ var SongName = 'Adicct';
 var request;
 var ArtistName = 'Hazbin Hotel';
 var AlbumName = ''
-//var CoverImage = 'https://static.wikia.nocookie.net/hazbinhotel/images/3/37/Addict_-_Imagen_promocional.png/revision/latest?cb=20200717232327&path-prefix=es';
-var CoverImage = 'https://images-na.ssl-images-amazon.com/images/I/71ta0e6TEGL._AC_SL1416_.jpg';
+var CoverImage = 'https://static.wikia.nocookie.net/hazbinhotel/images/3/37/Addict_-_Imagen_promocional.png/revision/latest?cb=20200717232327&path-prefix=es';
+
 
 /**
  * Obtiene el correo del usuario que esta logueado en el navegador
@@ -62,8 +62,10 @@ chrome.omnibox.onInputEntered.addListener(function (text) {
         console.log(text);
         for (elem of globalSongs.body) {
             if (elem.ST_URL == text) {
-                cancion = elem.ST_Title;
-                artista = elem.ST_Artist;
+                SongName = elem.ST_Title;
+                ArtistName = elem.ST_Artist;
+                AlbumName = elem.ST_Album;
+                CoverImage = elem.ST_Image;
                 break;
             }
         }
