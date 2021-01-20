@@ -24,11 +24,11 @@ call AssingAdminUser(1);
 /*
 Canciones _____________________________________
 */
-call AddSoundtacks('JwPlRrF5v_w','kiss','i was made for love','dynasty');
-call AddSoundtacks('QQcQDbpDH_o','scrillex','cinema','cinema');
-call AddSoundtacks('iO35Uv8DsJ0','audioslave','like a stone','audioslave');
-call AddSoundtacks('WyHAzfqkV5M','audioslave','show me how to live','audioslave');
-call AddSoundtacks('P5R3hU3hKkE','Robin S','show me love','show me love');
+call AddSoundtacks('JwPlRrF5v_w','kiss','i was made for love','dynasty','https://images-na.ssl-images-amazon.com/images/I/71ta0e6TEGL._AC_SL1416_.jpg');
+call AddSoundtacks('QQcQDbpDH_o','scrillex','cinema','cinema','https://m.media-amazon.com/images/I/81ptR9lIlkL._SS500_.jpg');
+call AddSoundtacks('iO35Uv8DsJ','audioslave','like a stone','audioslave','https://m.media-amazon.com/images/M/MV5BYjEzNWRhZmItOWE4Zi00MGM2LTk1ZjktZGQyMDc1ZWNjMDI3XkEyXkFqcGdeQXVyNTk1NTMyNzM@._V1_.jpg');
+call AddSoundtacks('"WyHAzfqkV5M','audioslave','show me how to live','audioslave','https://m.media-amazon.com/images/M/MV5BYjEzNWRhZmItOWE4Zi00MGM2LTk1ZjktZGQyMDc1ZWNjMDI3XkEyXkFqcGdeQXVyNTk1NTMyNzM@._V1_.jpg');
+call AddSoundtacks('P5R3hU3hKkE','Robin S','show me love','debut','https://upload.wikimedia.org/wikipedia/en/thumb/b/b2/Robin_S_Show_Me_Love_album_cover.jpg/220px-Robin_S_Show_Me_Love_album_cover.jpg');
 
 /*
 imgen
