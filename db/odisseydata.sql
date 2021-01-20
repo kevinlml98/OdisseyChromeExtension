@@ -24,11 +24,15 @@ call AssingAdminUser(1);
 /*
 Canciones _____________________________________
 */
-call AddSoundtacks('ZhIsAZO5gl0','kiss','i was made for love','dynasty');
+call AddSoundtacks('JwPlRrF5v_w','kiss','i was made for love','dynasty');
 call AddSoundtacks('QQcQDbpDH_o','scrillex','cinema','cinema');
-call AddSoundtacks('7QU1nvuxaMA','audioslave','like a stone','audioslave');
-call AddSoundtacks('vVXIK1xCRpY','audioslave','show me how to live','audioslave');
-call AddSoundtacks('Ps2Jc28tQrw','Robin S','show me love','debut');
+call AddSoundtacks('iO35Uv8DsJ0','audioslave','like a stone','audioslave');
+call AddSoundtacks('WyHAzfqkV5M','audioslave','show me how to live','audioslave');
+call AddSoundtacks('P5R3hU3hKkE','Robin S','show me love','show me love');
+
+/*
+imgen
+*/
 
 /*
 Palabras clave
