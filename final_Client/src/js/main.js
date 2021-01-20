@@ -1,8 +1,11 @@
 // Define variables
 let audio, playbtn, title, poster, artists, mutebtn, seekslider, volumeslider, 
 seeking = false, seekto, curtimetext, durtimetext, playlist_status, dir, playlist, 
-ext, agent, playlist_artist, repeat, randomSong;
+ext, agent, playlist_artist, repeat, randomSong, CurrentTime, Duration;
 
+
+
+/*
 // Initialization of YouTube Api
 
 var tag = document.createElement('script');
@@ -31,6 +34,7 @@ agent = navigator.userAgent.toLowerCase();
 if(agent.indexOf('firefox') != -1 || agent.indexOf('opera') != -1){
     ext = ".ogg";
 }
+*/
 
 // Set object references
 
@@ -48,6 +52,8 @@ playlist_artist = document.getElementById("playlist_artist");
 repeat = document.getElementById("repeat");
 randomSong = document.getElementById("random");
 
+
+/*
 playlist_index = 0;
 
 // Audio Object
@@ -60,24 +66,10 @@ audio.loop = false;
 
 playlist_status.innerHTML = title[playlist_index];
 playlist_artist.innerHTML = artists[playlist_index];
+*/
 
-// Add event handling
+/*
 
-playbtn.addEventListener("click", playPause);
-nextbtn.addEventListener("click", nextSong);
-prevbtn.addEventListener("click", prevSong);
-mutebtn.addEventListener("click", mute);
-visibilitybtn.addEventListener("click", toggle);
-seekslider.addEventListener("mousedown", function(event){seeking = true; seek(event);});
-seekslider.addEventListener("mousemove", function(event){seek(event);});
-seekslider.addEventListener("mouseup", function(){seeking = false;});
-volumeslider.addEventListener("mousemove", setvolume);
-audio.addEventListener("timeupdate", function(){seektimeupdate();});
-audio.addEventListener("ended",function(){switchTrack();});
-repeat.addEventListener("click", loop);
-randomSong.addEventListener("click", random);
-
-// Functions
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
         height: '315',
@@ -97,7 +89,7 @@ function onPlayerReady(event) {
     vpb.setAttribute("max",pgd);
 }*/
 //Intento de que la barra de progreso avance con forme al video onPlayerStateChange(event) y onPlay()
-var testThread;
+/*var testThread;
 function onPlayerStateChange(event) {
     if(event.data == 1)
     {
@@ -105,7 +97,87 @@ function onPlayerStateChange(event) {
     }else{
         clearInterval(testThread);
     }
+}*/
+
+// Functions
+
+let message = {
+    intended : 'player',
+    txt: 'Hello from the other side'
 }
+
+//Envia un mensaje formato JSON por medio de la funcion especifia de API de Chrome
+function sendMsg(msg)
+{
+    chrome.runtime.sendMessage(msg);
+}
+
+chrome.runtime.onMessage.addListener(gotMessage);
+
+function gotMessage(msg)
+{
+    console.log(msg);
+    if(msg.intended =="popup")
+    {
+        if(msg.action == "status")
+        {
+            /*
+            //Titulo de la cancion
+            can.innerHTML = msg.cancion;
+            //Nombre del artista
+            art.innerHTML = msg.artista;
+            //Nombre del album
+            alb.innerHTML = msg.album;
+            */
+            //bgi.style.backgroundImage = `url('${msg.cover}')`;
+            
+            //Valor del volumen igual al player
+            volumen.setAttribute("value",msg.volumen);
+            
+            //Valor del progreso igual al largo del video, y progreso actual del video igual al player.
+            //videoProgress.setAttribute('max', msg.videoLenght);
+            //videoProgress.setAttribute('value', msg.videoProgress);
+            Duration = msg.videoLenght;
+            CurrentTime = msg.videoProgress;
+            seektimeupdate();
+            
+            //Estado del boton de pausa/play segun el estado del player
+            if(msg.estado == true)
+            {
+                playbtn.setAttribute("value","pause");
+                
+            }else{
+                playbtn.setAttribute("value","play");
+                
+            }
+        }else if (msg.action == "progressBar")
+        {
+            //Updades del progreso del video
+            //videoProgress.setAttribute('value', msg.value); 
+        }
+    }
+}
+
+//PopUp listo, pedir stats del player
+sendMsg(message);
+
+// Add event handling
+
+playbtn.addEventListener("click", playPause);
+//nextbtn.addEventListener("click", nextSong);
+//prevbtn.addEventListener("click", prevSong);
+//mutebtn.addEventListener("click", mute);
+//visibilitybtn.addEventListener("click", toggle);
+//seekslider.addEventListener("mousedown", function(event){seeking = true; seek(event);});
+//seekslider.addEventListener("mousemove", function(event){seek(event);});
+//seekslider.addEventListener("mouseup", function(){seeking = false;});
+volumeslider.addEventListener("mousemove", setvolume);
+/*
+audio.addEventListener("timeupdate", function(){seektimeupdate();});
+audio.addEventListener("ended",function(){switchTrack();});
+*/
+//repeat.addEventListener("click", loop);
+//randomSong.addEventListener("click", random);
 // Oculta o hace visible el video de YouTube en la interfaz
 function toggle(element){
     let ventana = document.getElementById("player");
@@ -132,14 +204,21 @@ function fetchMusicDetails(){
     audio.play();
 }
 function playPause(element){
-    let playButton = document.getElementById("playpausebtn");
-    if(playButton.value == "play"){
-        playButton.setAttribute("value","pause");
-        player.playVideo()
+    if(playbtn.value == "play"){
+        playbtn.setAttribute("value","pause");
+        message ={
+            intended: 'player',
+            action: "videoPlay"
+        }
+        sendMsg(message);
         $("#playpausebtn img").attr("src","images/pause-red.png");
     }else{
-        playButton.setAttribute("value","play");
-        player.pauseVideo();
+        playbtn.setAttribute("value","play");
+        message ={
+            intended: 'player',
+            action: 'videoPause'
+        }
+        sendMsg(message);
         $("#playpausebtn img").attr("src","images/play-red.png");
     }
 }
@@ -167,27 +246,37 @@ function mute(){
     }
 }
 function seek(event){
-    if(player.getDuration() == 0){
+    if(Duration == 0){
         null;
     }else{
         if(seeking){
             seekslider.value = event.clientX - seekslider.offsetLeft;
-            seekto = player.getDuration() *  (seekslider.value / 100);
-            player.seekTo(seekto);
+            seekto = Duration *  (seekslider.value / 100);
+            message ={
+                intended: 'player',
+                action: 'progress',
+                value: v
+            }
+            sendMsg(message);
         }
     }
 }
 function setvolume(){
-    player.setVolume(volumeslider.value);
+    message ={
+        intended: 'player',
+        action: 'volume',
+        value: volumeslider.value
+    }
+    sendMsg(message);
 }
 function seektimeupdate(){
-    if(player.getDuration()){
-        let nt = player.getCurrentTime() * (100 / player.getDuration());
+    if(Duration){
+        let nt = CurrentTime * (100 / Duration);
         seekslider.value = nt;
-        var curmins = Math.floor(player.getCurrentTime() / 60);
-        var cursecs = Math.floor(player.getCurrentTime() - curmins * 60);
-        var durmins = Math.floor(player.getDuration() / 60);
-        var dursecs = Math.floor(player.getDuration() - durmins * 60);
+        var curmins = Math.floor(CurrentTime / 60);
+        var cursecs = Math.floor(CurrentTime - curmins * 60);
+        var durmins = Math.floor(Duration / 60);
+        var dursecs = Math.floor(Duration - durmins * 60);
         if(cursecs < 10){cursecs = "0" + cursecs}
         if(dursecs < 10){dursecs = "0" + dursecs}
         if(curmins < 10){curmins = "0" + curmins}
