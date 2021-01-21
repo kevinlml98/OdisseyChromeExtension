@@ -1,18 +1,18 @@
 # OdysseyChromeExtension
 
 ## Tabla de Contenido
-1. [Informacion General](#general-info)
-2. [Tecnologías](#technologias)
+1. [Informacion General](#Información-General)
+2. [Tecnologías](#Tecnologías)
 3. [Instalación](#Intalación)
-4. [Colaboración](#collaboration)
+4. [Colaboración](#Colaboradores)
 5. [FAQs](#faqs)
-### General Info
+### Información General
 ***
 Odyssey Music Extension es una extensión de navegador web para sistemas Chromium. Sus funcionalidades principales son las de buscar música y reproducirla, además de un sistema de recomendaciones. 
 
-### Screenshot
+### Capturas
 ![Captura OCE](https://github.com/kevinlml98/OdisseyChromeExtension/blob/main/Images/Captura.jpg)
-## Technologias
+## Tecnologías
 ***
 Una lista de las tecnologías usadas en el proyecto
 * NodeJs versión: v14.15.0.
@@ -49,7 +49,7 @@ Los siguientes son requerimientos para que la extension funcione:
 * La extension no funcionara correctamente si no esta funcionando el API-REST
 * La base de datos debe ser creada con los archivos de SQL que se encuentran en la carpeta de "db"
 
-## Collaboration
+## Colaboradores
 ***
 Este proyecto fue realizado por:
 > Kevin Masis Leandro
@@ -66,5 +66,8 @@ Dirijase a https://code.visualstudio.com/ y siga los pasos que presenta el sitio
 
 2. __Instalación de Nodejs__ 
 Dirijase a https://nodejs.org/es/ y siga los pasos que muestra el sitio
+
+3. __Instalación de MySQL__
+Dirijase a https://www.mysql.com/ y realice los pasos que presenta el sitio
 
 | Tecnológico de Costa Rica | 2020 | Ingeniería en Computadores |
