@@ -113,7 +113,6 @@ delete from SOUNDTRACKS where SOUNDTRACKS.ST_Id = IN_ST_Id;
 end
 $$
 
-
 DROP PROCEDURE IF EXISTS AddSoundtacks;
 DELIMITER $$
 create procedure AddSoundtacks(in IN_ST_URL varchar(255), in IN_ST_Artist varchar(50), in IN_ST_Title varchar(30),in IN_ST_Album varchar(30),in IN_ST_Image varchar(255))

@@ -191,7 +191,10 @@ router.get('/songs', (req, res) => {
       mysqlConnection.query('call ReturnAllSoundtracks()', (error, result) => {
         if (error) throw error;
         if (result.length > 0) {
-          res.json(result);
+          res.json({
+            status: "Found",
+            body: result[0]
+          });
         }
         else {
           res.json({

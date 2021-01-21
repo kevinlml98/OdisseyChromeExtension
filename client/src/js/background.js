@@ -13,7 +13,7 @@ var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 var player;
-var songId = 'JwPlRrF5v_w';
+var songId = 'ulfeM8JGq7s';
 
 //ulfeM8JGq7s
 
@@ -32,7 +32,7 @@ function sendMsg(msg)
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
         videoId: songId,
-        playerVars: {'autoplay': 0, 'controls': 0,  'loop': 1},
+        playerVars: {'autoplay': 0, 'controls': 0},
         events: {
             'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange
@@ -63,6 +63,11 @@ function onPlayerStateChange(event)
     {
       testThread = setInterval(onPlay,500);
 
+    }
+    else if( event.data == 0 )
+    {
+        playNext();
+    
     }else{
         clearInterval(testThread);
     }
@@ -143,6 +148,6 @@ function sendStatus()
         videoLenght: player.getDuration(),
         videoProgress: player.getCurrentTime()
     };
-    
+
     sendMsg(message);
 }
