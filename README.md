@@ -3,7 +3,7 @@
 ## Tabla de Contenido
 1. [Informacion General](#Información-General)
 2. [Tecnologías](#Tecnologías)
-3. [Instalación](#Intalación)
+3. [Instalación](#Instalación)
 4. [Colaboración](#Colaboradores)
 5. [FAQs](#faqs)
 ### Información General
@@ -18,7 +18,7 @@ Una lista de las tecnologías usadas en el proyecto
 * NodeJs versión: v14.15.0.
 * Visual Studio Code versión: 1.52.1
 
-## Intalación
+## Instalación
 ***
 Para obtener la extensión, clone el repositorio
 ```
