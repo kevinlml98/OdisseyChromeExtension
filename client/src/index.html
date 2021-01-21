@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/index.css">
+    <title>Odissey</title>
+</head>
+<body>
+
+    <!-- Header-->
+    <header>
+        
+    </header>
+    
+
+    <!-- Main -->
+
+    <main>
+    
+    <div class="media_controls_ui">
+        <section class="info">
+            <article>
+                <div id="player"></div>
+            </article>
+            <article>
+                <h3 id="titulo"></h3>
+                <h3 id="artista"></h3>
+                <h3 id="album"></h3>
+            </article>
+        </section>
+    
+        
+    
+        <section class="controls">  
+            <input class="btnp" type="button" id="btnp">
+            <input class="btnpause" type="button" id="btnplay">
+            <input class="btnnext" type="button" id="btnnext">
+            
+        </section>
+    
+        <section class="barra_container">
+            <h4>Progreso</h4>
+            <input type="range" name="video_progress_bar" id="video_progress_bar" min="0" step="1" width="200px" class="barra">
+        </section>
+        
+        <section class="barra_container">
+            <h4>Volumen</h4>
+            <input type="range" name="volumen" id="volumen" value="100" min="0" max="100" step="1" width="200px" class="barra">
+            <output class="volumen-output" for="volumen"></output>
+        </section>
+        
+    </div>
+    <div class="media_image" >
+        <div class="img_gradient"></div>
+    </div>
+
+
+    </main>
+
+    <!--Footer -->
+    <footer>
+
+    </footer>
+
+    <!-- Scripts-->
+    <script src="js/index.js"></script>
+</body>
+</html>

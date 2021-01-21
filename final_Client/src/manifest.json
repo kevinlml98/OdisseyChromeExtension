@@ -1,0 +1,25 @@
+{
+    "manifest_version" : 2,
+    "name" : "OdisseyChromeExtension",
+    "description" : "Reproductor de musica youtube",
+    "version" : "0.3",
+    "icons": { "16": "/images/pixel-icon.png"},
+    "browser_action" : {
+        "default_popup" : "index.html",
+        "default_title" : "odissey"
+    },
+    "background" :{
+        "page":"background.html"
+    },
+    "omnibox": { "keyword" : "@odyssey" },
+    "content_security_policy": "script-src 'self' https://www.youtube.com/iframe_api https://www.youtube.com/s/player/9f996d3e/www-widgetapi.vflset/www-widgetapi.js https://code.jquery.com/jquery-3.5.1.min.js; object-src 'self'",
+    "permissions": [
+        "activeTab",
+        "storage",
+        "tabs",
+        "http://*/*" , "https://*/*",
+        "cookies",
+        "identity",
+        "identity.email"
+    ]
+}
