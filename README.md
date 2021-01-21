@@ -8,7 +8,8 @@
 5. [FAQs](#faqs)
 ### General Info
 ***
-BomberTEC es una adaptación del famoso juego de Bomberman. Esta escrita en el lenguaje CS con el motor gráfico Unity
+Odyssey Music Extension es una extensión de navegador web para sistemas Chromium. Sus funcionalidades principales son las de buscar música y reproducirla, además de un sistema de recomendaciones. 
+
 ### Screenshot
 ![Image text]()
 ## Technologies
