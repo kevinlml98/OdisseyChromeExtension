@@ -1,9 +1,8 @@
 // Define variables
-let audio, playbtn, title, poster, artists, mutebtn, seekslider, volumeslider, 
-seeking = false, seekto, curtimetext, durtimetext, playlist_status, dir, playlist, 
-ext, agent, playlist_album, repeat, randomSong;
+let audio, playbtn, mutebtn, seekslider, volumeslider, 
+seeking = false, seekto, curtimetext, durtimetext, repeat, randomSong;
 
-var CurrentTime, Duration;
+var CurrentTime, Duration, playlist_status, playlist_album, artist, SongName, album, cover, poster, player;
 
 /*
 // Initialization of YouTube Api
@@ -51,6 +50,8 @@ playlist_status = document.getElementById("playlist_status");
 playlist_album = document.getElementById("playlist_artist");
 repeat = document.getElementById("repeat");
 randomSong = document.getElementById("random");
+poster = document.getElementById("image");
+bgImage = document.getElementById("bgImage");
 
 
 /*
@@ -122,16 +123,12 @@ function gotMessage(msg)
         if(msg.action == "status")
         {
             
-            //Titulo de la cancion
-            playlist_status.innerHTML = msg.artista+ " - " + msg.cancion;
-            //Nombre del artista
-            playlist_album.innerHTML = msg.album;
-            /*//Nombre del album
-            alb.innerHTML = msg.album;
-            */
-            //bgi.style.backgroundImage = `url('${msg.cover}')`;
-            $("#image img").attr("url",`url('${msg.cover}')`)
-
+            artist = msg.artista;
+            SongName = msg.cancion;
+            album = msg.album;
+            cover = msg.cover;
+            player = msg.player;
+            fetchMusicDetails()
             //Valor del volumen igual al player
             volumeslider.setAttribute("value",msg.volumen);
             
@@ -162,11 +159,10 @@ function gotMessage(msg)
             }
         }else if (msg.action == "progressBar")
         {
+            //Updades del progreso del video
             CurrentTime = msg.CurrentTime;
             Duration = msg.Duration;
             seektimeupdate();
-            //Updades del progreso del video
-            //videoProgress.setAttribute('value', msg.value); 
         }
     }
 }
@@ -185,12 +181,9 @@ seekslider.addEventListener("mousedown", function(event){seeking = true; seek(ev
 seekslider.addEventListener("mousemove", function(event){seek(event);});
 seekslider.addEventListener("mouseup", function(){seeking = false;});
 volumeslider.addEventListener("mousemove", setvolume);
-/*
-audio.addEventListener("timeupdate", function(){seektimeupdate();});
-audio.addEventListener("ended",function(){switchTrack();});
-*/
 //repeat.addEventListener("click", loop);
 //randomSong.addEventListener("click", random);
+
 // Oculta o hace visible el video de YouTube en la interfaz
 function toggle(element){
     let ventana = document.getElementById("player");
@@ -203,18 +196,26 @@ function toggle(element){
 }
 
 function fetchMusicDetails(){
-    // Poster Image, Pause/Play Image
+    /*
     $("#playpausebtn img").attr("src", "images/pause-red.png");
     $("#bgImage").attr("src", poster[playlist_index]);
-    $("#image").attr("src",poster[playlist_index]);
-
+    $("#image").attr("src",poster[playlist_index]);*/
+    //Titulo de la cancion
+    playlist_status.innerHTML = artist+ " - " + SongName;
+    //Nombre del album
+    playlist_album.innerHTML = album;
+    // Poster Image
+    poster.setAttribute("src", cover); 
+    // Background Image
+    bgImage.setAttribute("src", cover)
+    /*
     // Title and Artist
     playlist_status.innerHTML = title[playlist_index];
     playlist_album.innerHTML = artists[playlist_index];
 
     // Audio
     audio.src = dir + playlist[playlist_index] + ext;
-    audio.play();
+    audio.play();*/
 }
 function playPause(element){
     if(playbtn.value == "play"){
