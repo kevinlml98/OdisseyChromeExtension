@@ -23,10 +23,24 @@ Actualmente el juego debe ejecutado dentro de la intefaz de Unity
 ```
 $ git clone https://github.com/kevinlml98/Bomber/OdisseyChromeExtension.git
 ```
+## Uso
+***
+Para ejecutar Odyssey Chrome Extension se deben seguir los siguientes pasos:
+* Establecer la conexion con la Base de Datos de SQL, los datos de login son los siguientes:
+
+  Local Host: 127.0.0.1:3306
+  
+  Password: 1234
+
+* Ejecutar el comando node .\server.js en el directorio .\api-rest\
+* Cargar la extension a Chrome con la opcion de "Cargar descomprimida" y cargar el "src" del cliente
+
 ## Advertencias
 ***
-No ejecutar el programa con las siguientes variables debido a exceso requirimiento de recursos
-* Dimension del Mapa 50x50
+Los siguientes son requerimientos para que la extension funcione:
+
+* La extension no funcionara correctamente si no esta funcionando el API-REST
+* La base de datos debe ser creada con los archivos de SQL que se encuentran en la carpeta de "db"
 
 ## Collaboration
 ***
