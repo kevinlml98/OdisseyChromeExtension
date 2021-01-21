@@ -12,6 +12,8 @@ Odyssey Music Extension es una extensión de navegador web para sistemas Chromiu
 
 ### Capturas
 ![Captura OCE](https://github.com/kevinlml98/OdisseyChromeExtension/blob/main/Images/Captura.jpg)
+Apariencia de la extension
+
 ## Tecnologías
 ***
 Una lista de las tecnologías usadas en el proyecto
