@@ -47,7 +47,7 @@ $ git clone https://github.com/kevinlml98/Bomber/OdisseyChromeExtension.git
 Para ejecutar Odyssey Chrome Extension se deben seguir los siguientes pasos:
 
 * Ejecutar en la terminal de VSCode el comando node .\server.js en el directorio .\api-rest\
-* Para la busqueda canciones 
+* Para la busqueda canciones ingrese en la barra de busqueda del navegador @odyssey y presione TAB para autocompletar y luego busque canciones o realice busquedas por palabras clave.
 
 ## Advertencias
 ***
@@ -59,11 +59,11 @@ Los siguientes son requerimientos para que la extension funcione:
 ## Colaboradores
 ***
 Este proyecto fue realizado por:
-> Kevin Masis Leandro
+* Kevin Masis Leandro
 
-> Adrian Gomez
+* Adrian Gomez
 
-> Andrés Rojas Madrigal
+* Andrés Rojas Madrigal
 
 ## FAQs
 ***
