@@ -24,23 +24,23 @@ Para obtener la extensión, clone el repositorio
 ```
 $ git clone https://github.com/kevinlml98/Bomber/OdisseyChromeExtension.git
 ```
-* Dirijase al navegador
-* Abra la ventana de extensiones y habilite la opciones de desarrollador
-* Oprima la opción para cargar un archivo descomprimido
-* Selecciones la carpeta en donde se encuentra el archivo manifest.json
-* La extensión quedará habilitada por defecto
-
-## Uso
-***
-Para ejecutar Odyssey Chrome Extension se deben seguir los siguientes pasos:
 * Establecer la conexion con la Base de Datos de SQL, los datos de login son los siguientes:
 
   Local Host: 127.0.0.1:3306
   
   Password: 1234
+  
+* Dirijase al navegador
+* Abra la ventana de extensiones y habilite la opciones de desarrollador
+* Cargar la extension a Chrome con la opcion de "Cargar descomprimida" y cargar el "src" del cliente donde se encuentra el archivo manifest.json
+* La extensión quedará habilitada por defecto
 
-* Ejecutar el comando node .\server.js en el directorio .\api-rest\
-* Cargar la extension a Chrome con la opcion de "Cargar descomprimida" y cargar el "src" del cliente
+## Uso
+***
+Para ejecutar Odyssey Chrome Extension se deben seguir los siguientes pasos:
+
+* Ejecutar en la terminal de VSCode el comando node .\server.js en el directorio .\api-rest\
+* Para la busqueda canciones 
 
 ## Advertencias
 ***
