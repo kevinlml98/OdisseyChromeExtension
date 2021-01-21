@@ -62,6 +62,7 @@ function onPlayerStateChange(event)
     if(event.data == 1)
     {
       testThread = setInterval(onPlay,500);
+      sendStatus();
 
     }
     else if( event.data == 0 )

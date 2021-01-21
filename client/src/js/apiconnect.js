@@ -296,10 +296,10 @@ chrome.runtime.onMessage.addListener(
         console.log(msg);
 
         if (msg.intended === 'API') {
-            if (msg.txt == "nextSong") {
+            if (msg.action == "nextSong") {
                 playNext();
             }
-            else if (msg.action == "previousSong") {
+            else if (msg.action == "prevSong") {
                 playPrevious();
             }
         }
@@ -340,19 +340,16 @@ function playNext(){
             getSongData(request[i+1]);
             player.loadVideoById(request[i+1].ST_URL);
             isPlaying = true;
-            sendStatus();
         }
         else{
             getSongData(request[0]);
             player.loadVideoById(request[0].ST_URL);
             isPlaying = true;
-            sendStatus();
         }
     }else{
         getSongData(request[0]);
         player.loadVideoById(request[0].ST_URL);
         isPlaying = true;
-        sendStatus();
     }
 }
 
@@ -379,14 +376,12 @@ function playPrevious(){
             getSongData(request[i-1]);
             player.loadVideoById(request[i+1].ST_URL);
             isPlaying = true;
-            sendStatus();
         }
         else
         {
             getSongData(request[request.length -1]);
             player.loadVideoById(request[request.length -1].ST_URL);
             isPlaying = true;
-            sendStatus();
         }
 
     }else{
@@ -394,7 +389,6 @@ function playPrevious(){
         getSongData(request[request.length -1]);
         player.loadVideoById(request[request.length -1].ST_URL);
         isPlaying = true;
-        sendStatus();
     }
 }
 

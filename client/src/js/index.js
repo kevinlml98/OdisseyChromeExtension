@@ -3,6 +3,8 @@ console.log('Popup readay to go!');
 //Elementos interactuables
 const volumen = document.getElementById('volumen');
 const btn = document.getElementById("btnplay");
+const btnPrev = document.getElementById("btnp");
+const btnNext = document.getElementById("btnnext");
 const videoProgress = document.getElementById("video_progress_bar");
 const art = document.getElementById("artista");
 const can = document.getElementById("titulo");
@@ -90,6 +92,22 @@ btn.addEventListener('click', function(){
         }
         sendMsg(message);
     }
+});
+
+btnNext.addEventListener('click', function(){
+    message = {
+        intended:"API",
+        action: "nextSong"
+    }
+    sendMsg(message);
+});
+
+btnPrev.addEventListener('click', function(){
+    message = {
+        intended:"API",
+        action: "prevSong"
+    }
+    sendMsg(message);
 });
 
 volumen.addEventListener('input', function() {
