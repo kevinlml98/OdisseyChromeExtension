@@ -2,8 +2,8 @@
 
 ## Tabla de Contenido
 1. [Informacion General](#general-info)
-2. [Tecnologías](#technologies)
-3. [Instalación](#installation)
+2. [Tecnologías](#technologias)
+3. [Instalación](#Intalación)
 4. [Colaboración](#collaboration)
 5. [FAQs](#faqs)
 ### General Info
@@ -12,13 +12,13 @@ Odyssey Music Extension es una extensión de navegador web para sistemas Chromiu
 
 ### Screenshot
 ![Captura OCE](https://github.com/kevinlml98/OdisseyChromeExtension/blob/main/Captura.png)
-## Technologies
+## Technologias
 ***
 Una lista de las tecnologías usadas en el proyecto
-* NodeJs
-* Visual Studio Code
+* NodeJs versión: v14.15.0.
+* Visual Studio Code versión: 1.52.1
 
-## Installation
+## Intalación
 ***
 Actualmente el juego debe ejecutado dentro de la intefaz de Unity
 ```
