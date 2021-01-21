@@ -20,10 +20,16 @@ Una lista de las tecnologías usadas en el proyecto
 
 ## Intalación
 ***
-Actualmente el juego debe ejecutado dentro de la intefaz de Unity
+Para obtener la extensión, clone el repositorio
 ```
 $ git clone https://github.com/kevinlml98/Bomber/OdisseyChromeExtension.git
 ```
+* Dirijase al navegador
+* Abra la ventana de extensiones y habilite la opciones de desarrollador
+* Oprima la opción para cargar un archivo descomprimido
+* Selecciones la carpeta en donde se encuentra el archivo manifest.json
+* La extensión quedará habilitada por defecto
+
 ## Uso
 ***
 Para ejecutar Odyssey Chrome Extension se deben seguir los siguientes pasos:
