@@ -1,39 +1,8 @@
 // Define variables
-let audio, playbtn, mutebtn, seekslider, volumeslider, 
+let playbtn, mutebtn, seekslider, volumeslider, 
 seeking = false, seekto, curtimetext, durtimetext, repeat, randomSong;
 
 var CurrentTime, Duration, playlist_status, playlist_album, artist, SongName, album, cover, poster, player;
-
-/*
-// Initialization of YouTube Api
-
-var tag = document.createElement('script');
-
-tag.src = "https://www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-var player;
-var id = '5_385OOZlIg';
-var url = 'https://www.youtube.com/watch?v=' + id;
-
-// Initialization of Array of Music, Tittle, Poster Image, Artists
-
-dir = "music/";
-playlist = ["Cartoon-On-_-On","Elektronomia","Johnning","Popsicle","Fearless"];
-title = ["Cartoon - On & On","Elektronomia","Janji-Heroes Tonight","Popsicle","Lost Sky - Fearless"];
-artists = ["(feat. Daniel Levi) [NSC Release]","Elektronomia - Sky High [NCS Release]","(feat. Johnning) [NCS Release]",
-"LFZ - [NCS Release]","(feat. Chris Linton)[NCS Release]"];
-poster = ["images/ncs1.jpeg","images/ncs2.jpg","images/ncs3.jpg","images/ncs4.jpg","images/ncs5.jpg"];
-
-// Used to run on every browser
-
-ext = ".mp3";
-agent = navigator.userAgent.toLowerCase();
-if(agent.indexOf('firefox') != -1 || agent.indexOf('opera') != -1){
-    ext = ".ogg";
-}
-*/
 
 // Set object references
 
@@ -52,53 +21,6 @@ repeat = document.getElementById("repeat");
 randomSong = document.getElementById("random");
 poster = document.getElementById("image");
 bgImage = document.getElementById("bgImage");
-
-
-/*
-playlist_index = 0;
-
-// Audio Object
-
-audio = new Audio();
-audio.src = dir + playlist[0] + ext; // music/musicname.mp3
-audio.loop = false;
-
-// First song title and artist
-
-playlist_status.innerHTML = title[playlist_index];
-playlist_artist.innerHTML = artists[playlist_index];
-*/
-
-/*
-
-function onYouTubeIframeAPIReady() {
-    player = new YT.Player('player', {
-        height: '315',
-        width: '560',
-        videoId: id,
-        
-        playerVars: {'autoplay': 0, 'controls': 0,  'loop': 1},
-        events: {
-            'onStateChange': onPlayerStateChange
-        }
-    });
-}
-/*
-function onPlayerReady(event) {
-    let pgd = player.getDuration();
-    let vpb = document.getElementById("video_progress_bar");
-    vpb.setAttribute("max",pgd);
-}*/
-//Intento de que la barra de progreso avance con forme al video onPlayerStateChange(event) y onPlay()
-/*var testThread;
-function onPlayerStateChange(event) {
-    if(event.data == 1)
-    {
-      testThread = setInterval(seektimeupdate,500);
-    }else{
-        clearInterval(testThread);
-    }
-}*/
 
 // Functions
 
@@ -196,10 +118,6 @@ function toggle(element){
 }
 
 function fetchMusicDetails(){
-    /*
-    $("#playpausebtn img").attr("src", "images/pause-red.png");
-    $("#bgImage").attr("src", poster[playlist_index]);
-    $("#image").attr("src",poster[playlist_index]);*/
     //Titulo de la cancion
     playlist_status.innerHTML = artist+ " - " + SongName;
     //Nombre del album
@@ -208,14 +126,7 @@ function fetchMusicDetails(){
     poster.setAttribute("src", cover); 
     // Background Image
     bgImage.setAttribute("src", cover)
-    /*
-    // Title and Artist
-    playlist_status.innerHTML = title[playlist_index];
-    playlist_album.innerHTML = artists[playlist_index];
 
-    // Audio
-    audio.src = dir + playlist[playlist_index] + ext;
-    audio.play();*/
 }
 function playPause(element){
     if(playbtn.value == "play"){
