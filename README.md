@@ -11,7 +11,7 @@
 Odyssey Music Extension es una extensión de navegador web para sistemas Chromium. Sus funcionalidades principales son las de buscar música y reproducirla, además de un sistema de recomendaciones. 
 
 ### Screenshot
-![Image text]()
+![Captura OCE](https://github.com/kevinlml98/OdisseyChromeExtension/blob/main/Captura.png)
 ## Technologies
 ***
 Una lista de las tecnologías usadas en el proyecto
@@ -56,9 +56,9 @@ Este proyecto fue realizado por:
 ***
 Una lista de preguntas frecuentes
 1. **Instalación de Visual Studio Code**
-Dirijase a https://visualstudio.microsoft.com/es/vs/ y siga los pasos que presenta el sitio
+Dirijase a https://code.visualstudio.com/ y siga los pasos que presenta el sitio
 
 2. __Instalación de Nodejs__ 
-Dirijase a https://unity.com/ y siga los pasos que muestra el sitio
+Dirijase a https://nodejs.org/es/ y siga los pasos que muestra el sitio
 
 | Tecnológico de Costa Rica | 2020 | Ingeniería en Computadores |
