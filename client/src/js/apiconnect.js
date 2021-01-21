@@ -306,6 +306,10 @@ chrome.runtime.onMessage.addListener(
     }
 );
 
+/**
+ * Funcion auxiliar que obtiene canciones para iniciar el reproductor
+ * @async
+ */
 async function Start()
 {
     var temp = await GET_AllSoundtracks();
@@ -313,6 +317,9 @@ async function Start()
     console.log(request.length);
 }
 
+/**
+ * Obtiene la cancion que sigue en la lista
+ */
 function playNext(){
     if(songKey != -1)
     {
@@ -349,7 +356,9 @@ function playNext(){
     }
 }
 
-
+/**
+ * Obtiene la cancion anterior en la lista
+ */
 function playPrevious(){
     
     if(songKey != -1)
@@ -389,6 +398,11 @@ function playPrevious(){
     }
 }
 
+
+/**
+ * Obtiene los datos de la cancion que se desea reproducir de los datos obtenidos
+ * @param {Object} song Fromato JSON con datos de la cancion, desde el servidor
+ */
 function getSongData(song)
 {
     songKey = song.ST_Id;
