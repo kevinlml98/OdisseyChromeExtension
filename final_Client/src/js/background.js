@@ -45,7 +45,6 @@ function onYouTubeIframeAPIReady() {
  */
 function onPlayerReady(event) {
     console.log('player listo');
-    
 }
 
 //Intento de que la barra de progreso avance con forme al video onPlayerStateChange(event) y onPlay()
@@ -61,12 +60,7 @@ function onPlayerStateChange(event)
     if(event.data == 1)
     {
       testThread = setInterval(onPlay,500);
-      sendStatus();
 
-    }else if( event.data == 0 )
-    {
-        playNext();
-    
     }else{
         clearInterval(testThread);
     }
