@@ -173,8 +173,8 @@ sendMsg(message);
 // Add event handling
 
 playbtn.addEventListener("click", playPause);
-//nextbtn.addEventListener("click", nextSong);
-//prevbtn.addEventListener("click", prevSong);
+nextbtn.addEventListener("click", nextSong);
+prevbtn.addEventListener("click", prevSong);
 mutebtn.addEventListener("click", mute);
 //visibilitybtn.addEventListener("click", toggle);
 seekslider.addEventListener("mousedown", function(event){seeking = true; seek(event);});
@@ -241,6 +241,7 @@ function nextSong(){
         intended: "API",
         action: "nextSong"
     }
+    sendMsg(message);
     fetchMusicDetails();
 }
 function prevSong(){
@@ -248,6 +249,7 @@ function prevSong(){
         intended: "API",
         action: "prevSong"
     }
+    sendMsg(message);
     fetchMusicDetails();
 }
 function mute(){
