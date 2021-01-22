@@ -94,6 +94,658 @@
     
 
     
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id="/checkuser/:email"><span class="type-signature"></span>/checkuser/:email<span class="type-signature"> :GET</span></h4>
+
+
+
+
+<div class="description">
+    Evalua si un usuario existe en la base dde datos por medio del email registrado.
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">GET</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.js.html">api.js</a>, <a href="api.js.html#line7">line 7</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="/songs"><span class="type-signature"></span>/songs<span class="type-signature"> :GET</span></h4>
+
+
+
+
+<div class="description">
+    Obtiene la lista de todas las canciones. El usuario debe estar registrado en la base de datos
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">GET</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.js.html">api.js</a>, <a href="api.js.html#line211">line 211</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="/songs/:id"><span class="type-signature"></span>/songs/:id<span class="type-signature"> :DELETE</span></h4>
+
+
+
+
+<div class="description">
+    Elimina la canción indicada por el id. Requiere de un rol de administrador.
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">DELETE</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.js.html">api.js</a>, <a href="api.js.html#line255">line 255</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="/songs/:search"><span class="type-signature"></span>/songs/:search<span class="type-signature"> :GET</span></h4>
+
+
+
+
+<div class="description">
+    Busca las canciones según una consulta del usuario. Debe estar registrado en la base de datos
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">GET</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.js.html">api.js</a>, <a href="api.js.html#line296">line 296</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="/users"><span class="type-signature"></span>/users<span class="type-signature"> :GET</span></h4>
+
+
+
+
+<div class="description">
+    Obtiene la lista de usuarios. Debe estar registrado en la base de datos
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">GET</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.js.html">api.js</a>, <a href="api.js.html#line38">line 38</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="/users"><span class="type-signature"></span>/users<span class="type-signature"> :POST</span></h4>
+
+
+
+
+<div class="description">
+    Registra un nuevo usuario en la base de datos.
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">POST</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.js.html">api.js</a>, <a href="api.js.html#line149">line 149</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="/users/:id"><span class="type-signature"></span>/users/:id<span class="type-signature"> :GET</span></h4>
+
+
+
+
+<div class="description">
+    Consulta la lista de usuarios buscando alguno cuyo ID haga match con el parámetro. Debe estar registrado en la base de datos
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">GET</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.js.html">api.js</a>, <a href="api.js.html#line78">line 78</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="/users/:id"><span class="type-signature"></span>/users/:id<span class="type-signature"> :DELETE</span></h4>
+
+
+
+
+<div class="description">
+    Elimina el usuario indicado por id de la base de datos. Requiere de un rol administrador
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">DELETE</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.js.html">api.js</a>, <a href="api.js.html#line170">line 170</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="/users/exists/:id"><span class="type-signature"></span>/users/exists/:id<span class="type-signature"> :GET</span></h4>
+
+
+
+
+<div class="description">
+    Evalua si un usuario existe o no en la base de datos. Debe estar registrado en la base de datos
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">GET</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api.js.html">api.js</a>, <a href="api.js.html#line120">line 120</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+    
 
     
         <h3 class="subsection-title">Methods</h3>
@@ -3294,13 +3946,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#Auth">Auth</a></li><li><a href="global.html#CheckUser">CheckUser</a></li><li><a href="global.html#DeleteSong">DeleteSong</a></li><li><a href="global.html#DeleteUsers">DeleteUsers</a></li><li><a href="global.html#fetchMusicDetails">fetchMusicDetails</a></li><li><a href="global.html#GET_AllSoundtracks">GET_AllSoundtracks</a></li><li><a href="global.html#GET_AllUsers">GET_AllUsers</a></li><li><a href="global.html#GET_Soundtracks">GET_Soundtracks</a></li><li><a href="global.html#getSongData">getSongData</a></li><li><a href="global.html#GetUserID">GetUserID</a></li><li><a href="global.html#mute">mute</a></li><li><a href="global.html#nextSong">nextSong</a></li><li><a href="global.html#onPlay">onPlay</a></li><li><a href="global.html#onPlayerReady">onPlayerReady</a></li><li><a href="global.html#onPlayerStateChange">onPlayerStateChange</a></li><li><a href="global.html#onYouTubeIframeAPIReady">onYouTubeIframeAPIReady</a></li><li><a href="global.html#playNext">playNext</a></li><li><a href="global.html#playPause">playPause</a></li><li><a href="global.html#playPrevious">playPrevious</a></li><li><a href="global.html#PostData">PostData</a></li><li><a href="global.html#prevSong">prevSong</a></li><li><a href="global.html#seek">seek</a></li><li><a href="global.html#seektimeupdate">seektimeupdate</a></li><li><a href="global.html#sendMsg">sendMsg</a></li><li><a href="global.html#sendStatus">sendStatus</a></li><li><a href="global.html#setvolume">setvolume</a></li><li><a href="global.html#Start">Start</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#/checkuser/:email">/checkuser/:email</a></li><li><a href="global.html#/songs">/songs</a></li><li><a href="global.html#/songs/:id">/songs/:id</a></li><li><a href="global.html#/songs/:search">/songs/:search</a></li><li><a href="global.html#/users">/users</a></li><li><a href="global.html#/users/:id">/users/:id</a></li><li><a href="global.html#/users/exists/:id">/users/exists/:id</a></li><li><a href="global.html#Auth">Auth</a></li><li><a href="global.html#CheckUser">CheckUser</a></li><li><a href="global.html#DeleteSong">DeleteSong</a></li><li><a href="global.html#DeleteUsers">DeleteUsers</a></li><li><a href="global.html#fetchMusicDetails">fetchMusicDetails</a></li><li><a href="global.html#GET_AllSoundtracks">GET_AllSoundtracks</a></li><li><a href="global.html#GET_AllUsers">GET_AllUsers</a></li><li><a href="global.html#GET_Soundtracks">GET_Soundtracks</a></li><li><a href="global.html#getSongData">getSongData</a></li><li><a href="global.html#GetUserID">GetUserID</a></li><li><a href="global.html#mute">mute</a></li><li><a href="global.html#nextSong">nextSong</a></li><li><a href="global.html#onPlay">onPlay</a></li><li><a href="global.html#onPlayerReady">onPlayerReady</a></li><li><a href="global.html#onPlayerStateChange">onPlayerStateChange</a></li><li><a href="global.html#onYouTubeIframeAPIReady">onYouTubeIframeAPIReady</a></li><li><a href="global.html#playNext">playNext</a></li><li><a href="global.html#playPause">playPause</a></li><li><a href="global.html#playPrevious">playPrevious</a></li><li><a href="global.html#PostData">PostData</a></li><li><a href="global.html#prevSong">prevSong</a></li><li><a href="global.html#seek">seek</a></li><li><a href="global.html#seektimeupdate">seektimeupdate</a></li><li><a href="global.html#sendMsg">sendMsg</a></li><li><a href="global.html#sendStatus">sendStatus</a></li><li><a href="global.html#setvolume">setvolume</a></li><li><a href="global.html#Start">Start</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Thu Jan 21 2021 00:28:29 GMT-0600 (Central Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Thu Jan 21 2021 20:57:59 GMT-0600 (Central Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
