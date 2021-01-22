@@ -15,8 +15,6 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 var player;
 var songId = 'ulfeM8JGq7s';
 
-//ulfeM8JGq7s
-
 /**
  * Envia un mensaje por medio del api de chrome
  * @param {Object} msg - Mensaje en formato JSON
@@ -32,7 +30,7 @@ function sendMsg(msg)
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
         videoId: songId,
-        playerVars: {'autoplay': 0, 'controls': 0},
+        playerVars: {'autoplay': 0, 'controls': 0,  'loop': 1},
         events: {
             'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange
@@ -47,6 +45,7 @@ function onYouTubeIframeAPIReady() {
  */
 function onPlayerReady(event) {
     console.log('player listo');
+    
 }
 
 //Intento de que la barra de progreso avance con forme al video onPlayerStateChange(event) y onPlay()
@@ -62,9 +61,9 @@ function onPlayerStateChange(event)
     if(event.data == 1)
     {
       testThread = setInterval(onPlay,500);
+      sendStatus();
 
-    }
-    else if( event.data == 0 )
+    }else if( event.data == 0 )
     {
         playNext();
     
@@ -79,13 +78,12 @@ function onPlayerStateChange(event)
  */
 function onPlay()
 {
-    let time = player.getCurrentTime();
     message = {
         intended: "popup",
         action: "progressBar",
-        value: time
+        CurrentTime: player.getCurrentTime(),
+        Duration: player.getDuration()
     };
-
     sendMsg(message);
 }
 
@@ -126,6 +124,13 @@ function (msg)
         }else if(msg.action == "progress")
         {
             player.seekTo(msg.value);
+
+        }else if(msg.action == "AudioMute"){
+            player.mute();
+
+        }else if(msg.action == "AudioUnmute"){
+            player.unMute()
+
         }
     }
 });
@@ -146,8 +151,9 @@ function sendStatus()
         estado: isPlaying,
         volumen: player.getVolume(),
         videoLenght: player.getDuration(),
-        videoProgress: player.getCurrentTime()
+        videoProgress: player.getCurrentTime(),
+        muteado: player.isMuted()
     };
-
+    
     sendMsg(message);
 }
